@@ -1,2 +1,2 @@
 # JavaScript_Practice
-JavaScript Practice (HTML / CSS / JS / JQuery)
+JavaScript Basic (HTML / CSS / JS / JQuery)
