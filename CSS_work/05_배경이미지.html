@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배경스타일</title>
+    <style>
+        div{
+            width:300px;
+            height:300px;
+            border:9px lime dotted;
+            padding:10px;
+        }
+        .backcolor{
+            background-color: rgba(50,100,22,0.5);
+        }
+        .clip{
+            /* background-clip: padding-box; */
+            background-clip: content-box;
+        }
+        .backimage{
+            /* background-image:url("peng.jpg"); */
+            background-image:url("hajun.jpg");
+            background-repeat:no-repeat;
+            /* background-repeat:repeat-y; */
+
+            /* 배경그림의 크기지정하기 */
+            /* background-size:contain; */
+            /* background-size:cover; */
+            /* background-size: 100% 100%; */
+            background-size: 100px 100px;
+            
+            /* 배경그림 위치조정 */
+            background-position: center center;
+            /* background-position: 10px 20px; */
+            
+            /* 이미지 위치고정:확대해야보임 */
+            background-attachment:fixed;
+        }
+        .grade{
+                background:linear-gradient(45deg,lightcoral,lightblue 15%,
+                 lime,yellow 90%, purple, tomato 90%, black, white 90%, hotpink, 
+                 aqua 100%);
+            }
+    </style>
+</head>
+<body>
+    <h1>배경색 설정하기</h1>
+    <div class="backcolor clip">div1</div>
+    <h3>배경이미지설정하기</h3>
+    <div class="backimage"></div>
+    <div class="grade"></div>
+</body>
+</html>

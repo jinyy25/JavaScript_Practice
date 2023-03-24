@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        table{
+            width:400px;
+        }
+        table,td,th{
+            border:1px black solid;
+        }
+    </style>
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>첫 번째 게시물 입니다</td>
+            <td>홍길동</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>두 번째 게시물 입니다</td>
+            <td>홍길동</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>세 번째 게시물 입니다</td>
+            <td>홍길동</td>
+        </tr>
+        <div id="container"></div>
+        <script>
+            $(function(){
+                $("table tr").click((e)=>{
+
+                        $("#container").append($("<span>").text($(v).text()));
+                    });
+                })
+            })
+        </script>
+    </table>
+    <script> 
+        window.onload = function testClicked(){
+        }
+    </script>
+</body>
+</html>

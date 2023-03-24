@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문자스타일속성</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Single+Day&family=Stylish&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h3>글꼴 설정하기</h3>
+    <p>
+        글자의 모형을 의미하는 것으로 운영체제에 설치되어있는 글꼴만 사용 가능
+        만일 지정한 글꼴이 없다면 브라우저의 기본글꼴이 출력됨. 맑은 고딕
+        font-family : 글꼴명, 글꼴명...
+    </p>
+
+    <div id="fontfamilyTest">
+        <p>기본글꼴</p>
+        <p class="gung">궁서체 적용하기</p>
+        <p class="others">두개 한번에 선언하기</p>
+        <h1 class="dokdo">웹폰트 적용하기</p>
+        <h2 class="stylish">이건 스타일리쉬</h2> 
+        <h3 class="singleday">이건 싱글데이</h3>  
+    </div>
+    
+    <h3>글자 굵게하기</h3>
+    <p>글자 굵게 해보자 
+        <span id="bold">굵어진 글자</span>
+        <span class="bolder">굵어진 글자</span>
+        <span class="lighter">굵어진 글자</span>
+    </p>
+
+    <h3>영어대문자를 소문자크기로 출력</h3>
+    <p>hello <span class="variant">hello</span>HELLO</p>
+    
+    <h3>글자 기울여 표시하기</h3>
+    <p>오늘은 <span class="i">월요일</span></p>
+    <p class="allFont">한번에 글자스타일 지정하기</p>
+    <p class="colorTest allFont">코로나야 그만가! 힘드러</p>
+    
+    <h3>문구스타일 : 밑줄(underline), 윗줄(overline), 삭선(line-through), 줄없앰(none)_</h3>
+    <p class="decoration allFont colorTest">기본 문자스타일</p>
+    <a class="allFont linkDelete" href="">이동글자</a>
+    
+    <h3>영문자 대/소문자로 변경, 첫글자 대문자로...</h3>
+    <p class="upper allFont">hello rclass</p>
+    <p class="lower allFont">HELLO RCLASS</p>
+    <p class="cap allFont">hello rclass</p>
+    <style>
+        .cap{
+            text-transform: capitalize;  
+        }
+        .lower{
+            text-transform: lowercase;
+        }
+        .upper{
+            text-transform: uppercase;
+        }
+        .linkDelete{
+            text-decoration: none;
+        }
+        .decoration{
+            /* text-decoration: underline; */
+            /* text-decoration: overline; */
+            text-decoration: line-through;
+        }
+        .colorTest{
+            /* color:goldenrod; */
+            color:rgb(100, 200, 213)
+        }
+        .allFont{
+            font : italic bolder 30px "Single Day";
+        }
+        .i{
+            font-style: italic;
+        }
+        .variant{
+            font-variant: small-caps;
+        }
+        .lighter{
+            /* font-weight:lighter; */
+            font-weight:800;
+        }
+        .bolder{
+            font-weight:bolder;
+        }
+        #bold{
+            font-weight:bold;
+        }
+        #fontfamilyTest{
+            font-size:10px;
+        }
+        .singleday{
+            font-family:"Single Day";
+            /* 절대크기 */
+            font-size:30px;
+        }
+        .stylish{
+            font-family:'stylish';
+            /* 상대크기 */
+            font-size:2em;
+        }
+        .dokdo{
+            font-family:'Dokdo';
+        }
+        .gung{
+            font-family:'궁서체';
+        }
+        .others{
+            font-family: "공서체", "바탕체";
+        }
+    </style>
+
+    <h3>글자에 그림자 넣기</h3>
+    <h1 class='textshadow'>rclass 화이팅</h1>
+
+    <h3>공백을 처리하는 스타일</h3>
+    <div class="whitespace">
+        I’m                                 trying to give u something more
+So come with me and fly away
+away away away away
+
+그래서 난 눈누난나
+눈누누난나
+Put’ em up in the air
+누나 누나
+Like this oh 나나나
+누나 누나
+에에에에이
+
+나를 지금 원해?
+Gimme more Gimme more
+Gimme more Gimme more
+Baby baby yeah I want it
+이리로 이리로 이리로 이리 온
+유난 떨지 마 그만
+원한다면 솔직해져 봐 too much
+우 baby 와서 가져가
+I could give u everything anything
+Baby can u handle it?
+
+뭐라 하던 still don’t give a what
+맘대로 계속 떠들어 they talk about me
+뭐라노 뭐라카노 F U
+
+그래서 난 눈누난나
+눈누누난나
+Put’ em up in the air
+누나 누나
+Like this oh 나나나
+누나 누나
+에에에에이
+
+I’m still Jessi from the block
+U know I got the keys to the lock
+안 봐 남의 눈치 I just do me
+날 보기 위해 들어 뒤꿈치
+Wake up bless looking fresh
+어딜 가든 flex got the S on my chest
+싸이 오빠 말했지 꼴리는 대로 해
+no red lights 올림픽대로 aye!
+
+뭐라 하던 still don’t give a what
+맘대로 계속 떠들어 they talk about me
+뭐라노 뭐라카노 F U
+
+그래서 난 눈누난나
+눈누누난나
+Put’ em up in the air
+누나 누나
+Like this oh 나나나
+누나 누나
+에에에에이
+
+I’m trying to give u something more
+So come with me and fly away
+away away away away
+
+그래서 난 눈누난나
+눈누누난나
+Put’ em up in the air
+누나 누나
+Like this oh 나나나
+누나 누나
+에에에에이
+    </div>
+    <style>
+        .textshadow{
+            text-shadow: 2px 2px 5px red, 4px 4px 5px yellow, -2px -2px 5px lime;
+        }
+        div.whitespace{
+            width:300px;
+            height:auto;
+            border:1px red solid;
+            /* 한줄로 출력 */
+            /* white-space: nowrap; */
+            /* 쓴대로 출력 */
+            /* white-space:pre; */
+            /* 공백없이 출력 */
+            /* white-space:pre-line; */
+            /* 공백 있게 출력하나 범위안에 출력 */
+            white-space: pre-wrap;
+        }
+    </style> 
+    
+    <h1>글자간격 속성 설정</h1>
+    <h3>기본문자</h3>
+    <!-- 문자간 간격 -->
+    <h3 class="letter">기본 문자</h3>
+    <!-- 단어간 간격 -->
+    <h3 class="word">기본 문자</h3>
+    <style>
+        .letter{
+            letter-spacing: 20px
+            }
+        .word{
+            word-spacing: 20px;
+        }
+    </style>
+
+<div id="containerText">
+I’m trying to give u something more
+So come with me and fly away
+away away away away
+
+그래서 난 눈누난나
+눈누누난나
+Put’ em up in the air
+누나 누나
+Like this oh 나나나
+누나 누나
+에에에에이
+
+나를 지금 원해?
+Gimme more Gimme more
+Gimme more Gimme more
+Baby baby yeah I want it
+이리로 이리로 이리로 이리 온
+유난 떨지 마 그만
+원한다면 솔직해져 봐 too much
+우 baby 와서 가져가
+I could give u everything anything
+Baby can u handle it?
+
+뭐라 하던 still don’t give a what
+맘대로 계속 떠들어 they talk about me
+뭐라노 뭐라카노 F U
+
+그래서 난 눈누난나
+눈누누난나
+Put’ em up in the air
+누나 누나
+Like this oh 나나나
+누나 누나
+에에에에이
+
+I’m still Jessi from the block
+U know I got the keys to the lock
+안 봐 남의 눈치 I just do me
+날 보기 위해 들어 뒤꿈치
+Wake up bless looking fresh
+어딜 가든 flex got the S on my chest
+싸이 오빠 말했지 꼴리는 대로 해
+no red lights 올림픽대로 aye!
+
+뭐라 하던 still don’t give a what
+맘대로 계속 떠들어 they talk about me
+뭐라노 뭐라카노 F U
+
+그래서 난 눈누난나
+눈누누난나
+Put’ em up in the air
+누나 누나
+Like this oh 나나나
+누나 누나
+에에에에이
+
+I’m trying to give u something more
+So come with me and fly away
+away away away away
+
+그래서 난 눈누난나
+눈누누난나
+Put’ em up in the air
+누나 누나
+Like this oh 나나나
+누나 누나
+에에에에이
+</div>
+<div class="align">
+    <p>안녕!</p>
+</div>
+<style>
+    .align>p{
+        border:1px crimson solid;
+        width:50%;
+    }
+    .align{
+        border:4px cyan solid;
+        text-align: center;
+    }
+    div#containerText{
+        width:400px;
+        border:4px lime dotted;
+        text-align: justify;
+    }
+</style>
+
+<h3>들여쓰기(indent), line높이 조정</h3>
+<p class="indent">
+    그래서 난 눈누난나
+    눈누누난나
+    Put’ em up in the air
+    누나 누나
+    Like this oh 나나나
+    누나 누나
+    에에에에이
+</p>
+<p class="indent">
+    그래서 난 눈누난나
+    눈누누난나
+    Put’ em up in the air
+    누나 누나
+    Like this oh 나나나
+    누나 누나
+    에에에에이
+</p>
+<style>
+    .indent{
+        text-indent: 40px;
+        line-height: 50px;
+    }
+</style>
+
+<div class="overflow">
+        그래서 난 눈누난나
+        눈누누난나
+        Put’ em up in the air
+        누나 누나
+        Like this oh 나나나
+        누나 누나
+        에에에에이
+</div>
+<style>
+    .overflow{
+        border:5px lightgreen solid;
+        width:200px;
+        white-space: nowrap;
+        overflow:hidden;
+        /* text-overflow:clip; 위와 같은 효과*/
+        text-overflow: ellipsis;
+    }
+</style>
+
+</body>
+</html>

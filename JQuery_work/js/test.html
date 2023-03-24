@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+        #target{
+            background-color:olivedrab;
+            border:1px red solid;
+            width:200px;
+            height: 200px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="target">
+        <button onclick="copyTest();">복사</button>
+        <button onclick="removeTest(event);">삭제</button>
+    </div>
+    <script>
+        function copyTest(){
+            //객체복사해보자. 제이쿼리이용해서 복사하기
+            //clone();
+            console.log($("#target").clone());
+            $("#target").clone().insertAfter($("#target"));
+        }
+        function removeTest(e){
+            //jquery에서 remove();:자신지우기 empty();:자식지우기 detach();
+            $(e.target).parent().remove();
+        }
+    </script>
+    <h2>테이블 이벤트 적용</h2>
+    <style>
+        table{
+            width:200px;
+        }
+        table,td,th{
+            border:1px black solid;
+        }
+    </style>
+    <table>
+        <tr>
+            <th>이름</th>
+            <th>나이</th>
+            <th>성별</th>
+        </tr>
+        <tr>
+            <td>강경록</td>
+            <td>29</td>
+            <td>남</td>
+        </tr>
+        <tr>
+            <td>남지선</td>
+            <td>20</td>
+            <td>여</td>
+        </tr>
+        <tr>
+            <td>조현</td>
+            <td>28</td>
+            <td>남</td>
+        </tr>
+    </table>
+    <div id="container"></div>
+    <script>
+        $(function(){
+            $("table tr").click((e)=>{
+                // alert("행클릭!");
+                console.log(e.target);
+                console.log($(e.target).parent().children());
+                let tds=$(e.target).parent().children();
+                $("#container").html("");
+                $(tds).each((i,v)=>{
+                    $("#container").append($("<span>").text($(v).text()));
+                });
+            })
+        })
+    </script>
+
+</body>
+</html>

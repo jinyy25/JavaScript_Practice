@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테이블태그</title>
+</head>
+<body>
+    <h1>테이블 작성하기</h1>
+    <table border="1" width="200" height="200">
+        <tr>
+            <td>1행 1열</td>
+            <td>1행 2열</td>
+        </tr>
+        <tr>
+            <td>2행 1열</td>
+            <td>2행 2열</td>
+        </tr>
+    </table>
+    <!-- 3행3열의 테이블 만들기 -->
+<h1>두번째 테이블</h1>
+<table border="1" width="200" height="200">
+    <tr>
+        <td>1행 1열</td>
+        <td>1행 2열</td>
+        <td>1행 3열</td>
+    </tr>
+    <tr>
+        <td>2행 1열</td>
+        <td>2행 2열</td>
+        <td>2행 3열</td>
+    </tr>
+    <tr>
+        <td>3행 1열</td>
+        <td>3행 2열</td>
+        <td>3행 3열</td>
+    </tr>
+</table>
+
+    <!-- DB에 있는 목록데이터를 가져와서 출력할때 table태그를 사용 -->
+    <table border="1" width="200" height="100">
+        <caption><h3>회원목록</h3></caption>
+        <tr>
+            <td>아이디</td>
+            <td>이름</td>
+            <td>성별</td>
+            <td>나이</td>
+        </tr>
+        <tr>
+            <td>admin</td>
+            <td>관리자</td>
+            <td>남</td>
+            <td>30</td>
+        </tr>
+    </table>
+    <h3>figure태그를 이용해서 내용설명을 작성할 수 있음</h3>
+    <figure>
+        <table border="1" width="200" height="100">
+        <tr>
+            <td>아이디</td>
+            <td>이름</td>
+            <td>성별</td>
+            <td>나이</td>
+        </tr>
+        <tr>
+            <td>admin</td>
+            <td>관리자</td>
+            <td>남</td>
+            <td>30</td>
+        </tr>
+        </table>
+        <figcaption><mark>회원정보출력</mark></figcaption>
+    </figure>
+
+<h2>테이블 태그 제목설정하기 : th </h2>
+<table border="1" width="400" height="200">
+    <tr>
+        <th>아이디</th>
+        <th>이름</th>
+        <th>성별</th>
+        <th>나이</th>
+    </tr>
+    <tr>
+        <td>admin</td>
+        <td>관리자</td>
+        <td>남</td>
+        <td>30</td>
+    </tr>
+    </table>
+    <h1>테이블 구역설정하기</h1>
+    <table border="1" width="400" height="200">
+        <thead>
+        <tr>
+            <th>이름</th>
+            <th>영어</th>
+            <th>수학</th>
+            <th>국어</th>
+            <th>코딩</th>
+        </tr>
+        <tr>
+            <td>유병승</td>
+            <td>10</td>
+            <td>10</td>
+            <td>10</td>
+            <td>50</td>
+        </tr>
+        </thead>
+        <tbody> 
+        <tr>
+            <td>인하준</td>
+            <td>50</td>
+            <td>50</td>
+            <td>50</td>
+            <td>100</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td>총점</td>
+            <td>60</td>
+            <td>60</td>
+            <td>60</td>
+            <td>150</td>
+        </tr>
+    </tfoot>
+    </table>
+    <style>
+        thead{
+            background-color: black;
+            color: white;
+        }
+        tbody{
+            background-color: violet;
+            color : blueviolet;
+        }  
+    </style>
+
+    <h1>테이블 병합하기</h1>
+    <p>테이블을 병합하려면 rowspan,colspan 두가지 속성을 이용<br>
+        행을 합치려면 : rowspan     열을 합치려면 : colspan
+    </p>
+    <table border="1" width="400" height="200">
+        <tr>
+            <td rowspan="3">1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>9</td>
+        </tr>
+    </table>
+    
+    <h2>열 병합하기</h2>
+    <table border="1" width="400" height="200">
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td rowspan="2">3</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td colspan="3">7</td>
+        </tr>
+    </table>
+
+
+
+</body>
+</html>

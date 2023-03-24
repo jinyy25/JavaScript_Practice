@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변형</title>
+    <style>
+        img{
+            margin-left: 50px;
+        }
+        .trans:active{
+            /* transform: translate(80px,50px); */
+            /* transform: translateX(80px); */
+            /* transform: translateY(80px); */
+            transform:perspective(300px) translateZ(80px);
+        }
+        .scale:hover{
+            /* transform:scale(1.5); */
+            /* transform:scaleX(1.5); */
+            transform:scaleY(1.5);
+        }
+        .rotate:hover{
+            /* transform: rotate(90deg); */
+            transform: perspective(300px) rotateX(45deg);
+            transform: perspective(300px) rotateY(45deg);
+        }
+        .skew:hover{
+            /* transform: skew(10deg, 2deg);  */
+            /* transform: skewX(10deg); */
+            transform: skewY(10deg);
+        }
+        .transition{
+            transition-property: all;
+            transition-duration: 2s;
+        }
+        .trans1{
+            width:200px;
+            height: 200px;
+            background-color:blueviolet;
+            transition-property: background-color,transform;
+            transition-duration: 0.1s;
+        }
+        .trans2:hover{
+            background-color:royalblue;
+            transform:perspective(300px) rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <h1>태그 이동시키기 : translate</h1>
+    <img class="transition trans" src="hajun.jpg" alt="" width="200" height="200">
+    <img class="transition scale" src="hajun.jpg" alt="" width="200" height="200">
+    <img class="trans1 trans2" src="hajun.jpg" alt="" width="200" height="200">
+    <img class="transition skew" src="hajun.jpg" alt="" width="200" height="200">
+    <div class="trans1 trans2">div1</div>
+</body>
+</html>

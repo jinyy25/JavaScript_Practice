@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여백스타일적용</title>
+    <style>
+        header>div{
+            width:100px;
+            height:100px;
+            border:1px purple solid;
+            margin-bottom: 10px;
+        }
+        ul{
+            /* padding : 컨텐츠 안에 공간을 마련 */
+            padding:5px;
+            border:1px brown solid;
+        }
+        ul>li{
+            /* margin : 컨텐츠 사이 elements(tag)를 조정할때  */
+            display: inline;
+            margin-left:10px;
+        }
+        table td{
+            border:1px black solid;
+            /* padding-left: 5px; */
+            padding:5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>a</div>
+        <div>b</div>
+        <ul>
+            <li><a href="">메인</a></li>
+            <li><a href="">게시판</a></li>
+            <li><a href="">공지사항</a></li>
+            <li><a href="">자료실</a></li>
+        </ul>
+        <table>
+            <tr>
+                <td>안녕하세요</td>
+                <td>안녕안녕</td>
+            </tr>
+            <tr>
+                <td>호호호호</td>
+                <td>저녁시간 :)</td>
+            </tr>
+        </table>
+    </header>
+</body>
+</html>

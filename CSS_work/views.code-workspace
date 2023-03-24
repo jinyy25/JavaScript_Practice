@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"name": "htmlwork",
+			"path": "..\\htmlwork"
+		},
+		{
+			"name": "csswork",
+			"path": "."
+		},
+		{
+			"name": "javascriptwork",
+			"path": "..\\javascriptwork"
+		},
+		{
+			"name": "jquerywork",
+			"path": "..\\jquerywork"
+		},
+		{
+			"name": "BINBANG - 복사본",
+			"path": "..\\BINBANG - 복사본"
+		}
+	],
+	"settings": {}
+}

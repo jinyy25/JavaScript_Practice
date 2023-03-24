@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제어문활용하기</title>
+</head>
+
+<body>
+    <h3>조건문활용하기</h3>
+    <p>
+        if, if=else, if else, switch 짧은 조건문
+    </p>
+    <input type="text" class="a">
+    <button onclick="testIf()">if테스트</button>
+    <div id="area"></div>
+    <script>
+        function testIf() {
+            //클래스 a에 입력값이 4보다 크면, ok!
+            //작으면 안돼! 출력
+            let input = document.getElementsByClassName("a")[0];
+            console.dir(input);
+            let area = document.getElementById("area");
+            if (input.value > 4) {
+                area.innerHTML = "OK!"
+            } else {
+                area.innerHTML = "안돼!";
+            }
+        }
+    </script>
+
+    <h3>반복문 이용하기</h3>
+    <p>
+        for,while,for in 문
+        for : 배열을 순회할때 사용, 기본적인 반복문 활용시
+        for in문 : 객체의 key값을 가져올 때 사용하는 반복문
+    </p>
+    <script>
+        //1~100까지 출력하기
+        //$ : 변수인지 로직인 지 구분
+        for (let i = 0; i < 100; i++) {
+            console.log(`${i + 1}`);
+        }
+        let count = 0;
+        while (count < 10) {
+            console.log(count++);
+        }
+    </script>
+
+    //리스트에 있는 글자색을 다르게 변경하기
+    <ul>
+        <li>첫번째</li>
+        <li>두번째</li>
+        <li>세번째</li>
+        <li>네번째</li>
+        <li>다섯번째</li>
+    </ul>
+    <button onclick="changeColor();">리스트 글자색변경하기</button>
+    <script>
+        function changeColor() {
+            let lis = document.getElementsByTagName("li");
+            console.log(lis);
+
+            let arr = ["red", "orange", "yellow", "green", "blue"];
+            for (let i = 0; i < 5; i++) {
+                // console.log(lis[i]);
+                // lis[i].style.color="red";
+                //빨주노초파로 적용하기
+                lis[i].style.color = arr[i];
+                let color = "";
+                // if(i==0) color="red";
+                // else if(i==1) color="orange";
+                // else if(i==2) color="yellow";
+                // else if(i==3) color="green";
+                // else if(i==4) color="blue";
+
+                // switch(i){
+                //     case 0 : color="red";break;
+                //     case 1 : color="orange";break;
+                //     case 2 : color="yellow";break;
+                //     case 3 : color="green";break;
+                //     case 4 : color="blue";break;
+                // }
+                // lis[i].style.color=color;
+            }
+        }
+    </script>
+    <h3>짧은 연산자 활용하기</h3>
+    <input type="text" id="su">
+    <button onclick="inputSu();">확인</button>
+    <script>
+        function inputSu() {                                 //기능class
+            let su = document.getElementById("su").value;     //변수선언
+            // su%2==0 && alert("짝수");                     //연산식
+            // su%2==0 || alert("홀수");
+            su % 2 == 0 ? alert("짝수") : alert("홀수");
+        }
+    </script>
+
+
+
+    <div id="container">
+        <p class="a">a p</p>
+        <p class="test">test p</p>
+        <p class="a">a p</p>
+        <p>not</p>
+        <p class="test">test p</p>
+    </div>
+    <button onclick="searchClass();">클래스찾기</button>
+    <!-- 클래스가 test인 값을 찾아서 글자색을 lime색으로 변경해보세요
+        요소(element)를 가져올때는 태그를 이용해서 가져올 것 -->
+    <script>
+        function searchClass() {
+            //속성명(property)은 className
+            let ps = document.getElementsByTagName("p");
+            for (let i = 0; i < ps.length; i++) {
+                if (ps[i].className == "test") {
+                    ps[i].style.color = "lime";
+                }
+            }
+        }
+    </script>
+
+    <ul>
+        <li>가</li>
+        <li>나다</li>
+        <li>라마바</li>
+        <li>a</li>
+        <li>bc</li>
+        <li>def</li>
+        <li>1</li>
+        <li>23</li>
+        <li>456</li>
+        <li>100</li>
+    </ul>
+    <button onclick="changeBack();">배경변경</button>
+    <script>
+        function changeBack() {
+            //li값이 3글자면 aqua
+            //li값이 2글자면 hotpink
+            //li값이 1글자면 crimson
+            //innerHTML속성에 값이 들어가 있음
+            //value -> input태그일때=innerHTML textNode=태그사이(시작태그,끝태그)의 문자
+            //innerHTML: 저장공간과 비슷
+            let cb = document.getElementsByTagName("li");
+            for (let i = 0; i < cb.length; i++) {
+                let color = ""
+                console.log(cb[i]);//태그출력(객체)~속성
+                let text = cb[i].innerHTML;//문자열
+                switch (text.length) {
+                    case 1: color = "crimson"; break;
+                    case 2: color = "hotpink"; break;
+                    case 3: color = "aqua"; break;
+                }
+                cb[i].style.backgroundColor = color;
+            }
+        }
+    </script>
+</body>
+
+</html>

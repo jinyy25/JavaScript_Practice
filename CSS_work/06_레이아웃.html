@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레이아웃</title>
+    <style>
+        div {border: 1px red solid;}
+        #title {
+            width: 600px;
+            height: 240px;
+            /* margin:0; */
+            /* margin-left:0;*/
+            display: inline-block;
+        }
+        #logo {
+            width: 200px;
+            height: 300px;
+            /* margin:0; */
+            /* margin-right:0; */
+            display: inline-block;
+        }
+        #mainmenu {
+            width: 600px;
+            height: 60px;
+        }
+        #header {
+            display: flex;
+        }
+        #titleContainer {
+            display: flex;
+            flex-flow: column;
+        }
+        section{
+            width:100%;
+            height:500px;
+            border:1px blue solid;
+        }
+        section>div{
+            height:200px;
+            display:inline-block;
+        }
+
+        section>div#content-container{
+            float:right;
+            width:69.6%;
+            height:500px;
+        }
+        section>div#content-container>#content-title{
+            height:60px;
+        }
+        section>div#content-container>#content-content{
+            height:440px;
+        }
+        section>div#side{
+            float:left;
+            width:30%;
+            height:500px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>레이아웃속성</h1>
+    <p>레이아웃은 화면에 엘리멘트(태그)를 원하는 위치에
+        배치하기 위해 영역을 확보하는 것을 말함</p>
+    <h3>block속성 태그</h3>
+    <header id="header">
+        <div id="logo">logo</div>
+        <div id="titleContainer">titleContainer
+            <div id="title">title</div>
+            <div id="mainmenu">mainmenu</div>
+        </div>
+    </header>
+    <section>
+    <!-- div:구역을 나눔 -->
+        <div id="side">
+            <ul>
+                <li><a href="">메인화면</a></li>
+                <li><a href="">게시판</a></li>
+                <li><a href="">갤러리</a></li>
+                <li><a href="">자료실</a></li>
+                <li><a href="">기타</a></li>
+            </ul>
+            <img src="hajun.jpg" alt="" width="100" height="100">
+        </div>
+        <div id="content-container">
+              <div id="content-title">title</div> 
+             <div id="content-content">content</div>    
+        </div>
+    </section>
+
+    <!-- flex:한열로 처리 -->
+    <h1>display:flex이용하기</h1>
+    <style>
+        section.con-container{
+            display:flex;
+            width:100%;
+            height:500px;
+        }
+        section.con-container>#side1{
+            width:30%;
+            height:500px;
+            /* display:flex;
+            열을 기준으로 뒤바꿈
+            flex-flow:column-reverse; */
+        }
+        section.con-container>#side1>div:first-child{
+            display:flex;
+            align-items:center;
+            justify-content: center;
+        }
+        section.con-container>#side1>div:first-child>img{
+            border-radius:200px;
+        }
+        section.con-container>#side1>div:first-child>ul>li{
+            list-style-type: none;
+        }
+        section.con-container>#side1>div:first-child>ul>li>a{
+            font-size:18px;
+            color:lightgreen;
+            font-weight: bolder;
+            text-decoration: none;
+        }
+        section.con-container>#content-container1{
+            width:70%;
+            height:500px;
+        }
+        #content-title1{
+            height:60px;
+        }
+        #content-content1{
+            height:440px;
+        }
+    </style>
+    <section class="con-container">
+        <div id="side1">
+            <div>
+            <img src="hajun.jpg" alt="" width="200" height="100">
+            <ul>
+                <li><a href="">메인화면</a></li>
+                <li><a href="">게시판</a></li>
+                <li><a href="">갤러리</a></li>
+                <li><a href="">자료실</a></li>
+                <li><a href="">기타</a></li>
+            </ul>
+            </div>
+            <div>
+            <ul>
+                <li><a href="">메인화면</a></li>
+                <li><a href="">게시판</a></li>
+                <li><a href="">갤러리</a></li>
+                <li><a href="">자료실</a></li>
+                <li><a href="">기타</a></li>
+            </ul>
+            </div>
+        </div>
+        <div id="content-container1">
+              <div id="content-title1">title</div> 
+              <div id="content-content1">content</div>    
+        </div>
+    </section>
+
+</body>
+
+</html>

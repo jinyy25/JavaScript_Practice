@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>페이지영역설정하기</title>
+    <style>
+        div{
+            border:1px red solid;
+            width : 200px;
+            height : 200px;
+            float : left;
+        }
+        span{
+            border:1px orange solid;
+            width : 200px;
+            height : 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1>div태그 살펴보기</h1>
+    <p>div태그는 다른 태그를 포함하는 container로서 사용</p>
+    <div id="header">
+        <h1>제목</h1>
+    </div>
+    
+    <div id="sideheader">block속성으로 한 라인을 다 차지</div>
+    
+    <h1>span태그 살펴보기</h1>
+    <div>
+        <span>span1</span>
+        <span>span2</span>
+    </div>
+    
+    <h1 style="clear:both;">시멘틱태그 적용하기</h1>
+    <header>
+        <h1>rclass 홈페이지</h1>
+        <nav>
+            <ul>
+                <li>main</li>
+                <li>board</li>
+                <li>gallary</li>
+                <li>event</li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <article>기사1</article>
+        <article>기사2</article>
+    </section>
+    <footer>
+        <nav>
+            <ul>
+                <li>연락처1</li>
+                <li>연락처2</li>
+            </ul>
+        </nav>
+        <h3>rclass.iptime.org</h3>
+    </footer>
+
+    <h1>다른페이지를 내페이지 안으로 불러오는 태그 : ifram태그</h1>
+    <iframe width="600" height="600" src="http://www.iei.or.kr"></iframe>
+    <iframe width="700" height="394" src="https://www.youtube.com/embed/Q-iEfzaikBI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    
+</body>
+</html>

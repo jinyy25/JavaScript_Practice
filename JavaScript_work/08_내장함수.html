@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내장함수</title>
+</head>
+
+<body>
+    <h1>내장함수 / 날짜처리객체 활용하기</h1>
+    <p>인코딩관련 함수</p>
+    <p>
+        escape / unescape : 영문,알파벳, 숫자, 일부특수문자(@,*, -, _, ., /)를 제외한 모든문자를 인코딩처리<br>
+        encodeURI / decodeURI : escape에서 인터넷주소에 사용되는 일부문자(:, ;, /, =, ?, &)는 변환하지않는 것<br>
+        encodeURIComponent / decodeURIComponent : 알파벳, 숫자를 제외한 모든 문자를 인코딩
+    </p>
+    <button onclick="test();">인코딩테스트</button>
+    <div id="area"></div>
+    <script>
+        function test() {
+            const area = document.getElementById("area");
+
+            let URI = "http://www.naver.com?test=한글입니다.123";
+            let escapeEn = escape(URI);
+            let encodeURIVal = encodeURI(URI);
+            let encodeUC = encodeURIComponent(URI);
+
+            area.innerHTML += `원본내용 : ${URI}<br>`;
+            area.innerHTML += `escape : ${escapeEn}<br>`;
+            area.innerHTML += `encodeURI : ${encodeURIVal}<br>`;
+            area.innerHTML += `encodeURIComponent : ${encodeUC}<br>`;
+            area.innerHTML += `<h3>디코딩</h3>`;
+            area.innerHTML += `unescape : ${unescape(escapeEn)}<br>`;
+            area.innerHTML += `decodeURI : ${decodeURI(encodeURIVal)}<br>`;
+            area.innerHTML += `decodeURIComponent : ${decodeURIComponent(encodeUC)}<br>`;
+        }
+    </script>
+
+    <h3>eval()</h3>
+    <p>문자열로 받아온 값을 코드로 해석하게 해주는 함수</p>
+    <button onclick="evalTest()">실행하기</button>
+
+    <textarea cols="30" rows="4" id="test"></textarea>
+    <div id="area2"></div>
+    <script>
+        function evalTest() {
+            const value = document.getElementById("test").value;
+            const area = document.getElementById("area2");
+            console.log(value, typeof (value));
+            area.innerHTML = value;
+            eval(value);//문자로 작성된 스크립트 구문을 실행하는 함수
+        }
+    </script>
+
+    <h3>isNaN함수</h3>
+    <p>
+        그 값이 NaN인지 확인해주는 함수
+    </p>
+    <button onclick="checkNaN();">isNaN</button>
+    <script>
+        function checkNaN() {
+            let su = 10;
+            let su2 = "십";
+            console.log(su - 20);
+            // if(su-su2==NaN){
+            if (isNaN(su - 20)) {
+                console.log("응 맞아!");
+            }
+        }
+
+    </script>
+
+    <h3>날짜처리객체를 알아보자</h3>
+    <p>자바스크립트 내장객체 Data를 이용함</p>
+    <button onclick="checkDate();">날짜 확인</button>
+    <div id="time">
+        <h1>현재시각</h1>
+    </div>
+
+    <script>
+        function checkDate() {
+            //날짜관련해서 Data객체를 이용해서 처리
+            let today = new Date();//컴퓨터에 설정된 날짜가 나옴
+            console.log(today);
+            //각날짜에 대한 내용을 따로 출력
+            //함수를 이용
+            //년출력하기
+            console.log(today.getFullYear());//년
+            console.log(today.getMonth() + 1);//월
+            console.log(today.getDate());//일
+            console.log(today.getDay())//요일 0:일 1:월 2:화 3:수 4:목 5:금 6:토
+            console.log(`${today.getTime()}`);
+            console.log(`${today.getHours()}시 ${today.getMinutes()}분 ${today.getSeconds()}초`);
+            let timecontainer = document.getElementById("time");
+
+            setInterval(function () {
+                today = new Date();
+                timecontainer.innerHTML = `<h4>${today.getHours()}시 ${today.getMinutes()}분 ${today.getSeconds()}초<h4>`;
+            }, 1000);
+            //날짜 대입해서 생성
+            let birthDay = new Date('08 28,20');
+            birthDay = new Date(2020, 8 - 1, 28, 01, 38, 47);
+            console.log(birthDay);
+        }
+    </script>
+
+</body>
+
+</html>

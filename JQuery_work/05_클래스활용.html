@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <h1>h1</h1>
+        <p>p1</p>
+        <p>p2</p>
+        <span>span</span>
+        <h2>h2</h2>
+    </div>
+    <p id="test">이거 변경</p>
+    <button onclick="addTest();">클래스추가하기</button>
+    <button onclick="removeTest();">클래스삭제</button>
+    <button onclick="toggleTest();">토글적용하기</button>
+    <script>
+        $("#test").on("mouseenter", (e) => {
+            $(e.target).toggleClass("a4");
+        })
+        function toggleTest() {
+            $("#container").children().toggleClass("a4");
+        }
+        function removeTest() {
+            // $("#container").children().removeClass("a0");
+            $("#container").children().removeClass(n => "a" + n);
+        }
+        function addTest() {
+            // elemanet에 class추가하려면 
+            // $("#container").children().addClass("a0");
+            // 함수를 이용해서 class추가하기
+            $("#container").children().addClass(n => "a" + n
+                // console.log(n);
+                // return되는 값이 클래스 이름으로 추가됨
+                // return "a"+n;
+            )
+        }
+    </script>
+    <style>
+        .a0 {
+            color: aqua;
+        }
+
+        .a1 {
+            color: red;
+        }
+
+        .a2 {
+            color: yellow;
+        }
+
+        .a3 {
+            color: lightpink;
+        }
+
+        .a4 {
+            background-color: lightseagreen;
+        }
+    </style>
+
+    <h3>attr()함수이용하기</h3>
+    <p>
+        속성값 게팅하거나 가져올때 사용하는 함수
+    </p>
+    <img src="sea.jpg" alt="김새론 으르렁!" width="100" height="100">
+    <button onclick="sizeChange();">크기변경</button>
+    <button onclick="imageChange();">이미지변경</button>
+    <script>
+        function imageChange() {
+            let src = "data:image/jpeg;base64,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";
+        
+            $("img").attr({
+                "src": src,
+                "width": "300",
+                "height": "300"
+            });
+        }
+        function sizeChange() {
+            console.log($("img").attr("width"));
+            console.log($("img").attr("height"));
+            let width = $("img").attr("width");
+            let height = $("img").attr("height");
+            //값변경
+            $("img").attr("width", Number(width) + 100);
+            $("img").attr("height", Number(height) + 100);
+        }
+    </script>
+    <h3>css함수</h3>
+    <p>
+        스타일을 변경하는 함수
+        css(스타일속성명) : 속성에 있는 값을 불러오는 것
+        css(스타일속성명,속성값) : 속성에 속성값을 넣기
+        css({객체}) : 다중속성을 세팅
+        css(function(i,v)) : 함수로직에 따라 변경
+    </p>
+    <div id="container2">
+        <h1>test1</h1>
+        <h1>test2</h1>
+        <h1>test3</h1>
+        <h1>test4</h1>
+        <h1>test5</h1>
+    </div>
+    <button onclick="changeStyle();">스타일변경</button>
+    <script>
+        function changeStyle() {
+            $("#container2").children().css({
+                "font-size": "20px",
+                "text-shadow": "3px 3px 5px red",
+                "color": "red"
+            });
+            $("#container2").children().css("color", (i, v) => {
+                console.log(i, v);
+                return i == 2 || "rgb(255,200,150)";
+            });
+        }
+    </script>
+    <h3>텍스트변경하기</h3>
+    <p>
+        html() : innerHTML과 비슷 html태그가 들어오면 해석함
+        text() : innerText와 비슷 html태그가 오면 글자로봄
+    </p>
+    <div id="container3">
+        <p>안녕</p>
+        <p>하이</p>
+        <p>봉쥬르</p>
+    </div>
+    <button onclick="changeText();">글자변경</button>
+    <script>
+        function changeText(){
+        $("#container3>p").each((i,v)=>{
+            console.log(i,$(v).html());
+            console.log(i,$(v).text());
+        })
+        $("#container3>p").each((i,v)=>{
+            if(i%2==0){
+                $(v).html("<b>짝수다!</b>");
+            }else{
+                $(v).text("<b>홀수다!</b>");
+            }
+        })
+    }
+    </script>
+</body>
+
+</html>

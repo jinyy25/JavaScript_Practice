@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테두리스타일 적용하기</title>
+</head>
+<body>
+    <h1>테두리스타일 적용하기</h1>
+    <p>border</p>
+    <style>
+        div{
+            width:50px;
+            height:50px;
+        }
+        .dashed{
+            border-style:dashed;
+            /* 원하는 위치에 설정가능 */
+            border-top-style: solid;
+            border-bottom-style: double;
+        }
+        .dotted{
+            border-style: dotted;
+            /* 테두리색설정 */
+            border-color:mediumturquoise;
+            border-left-color: olive;
+            border-width: 5px;
+            border-bottom-width:10px;
+        }
+        .double{
+            border-style: double;
+        }
+        .groove{
+            border-style: groove;
+        }
+        .inset{
+            border-style: inset;
+        }
+        .outset{
+            border-style: outset;
+        }
+        .ridge{
+            border-style: ridge;
+        }
+        .solid{
+            border-style: solid;
+        }
+        #container{
+            display:flex;
+        }
+        .total{
+            border:1px aqua solid;
+        }
+        .radius{
+            /* 테두리의 모서리를 둥글게 해주는 속성 */
+            /* border-radius:100px; */
+            border-top-left-radius: 100px;
+            border-top-right-radius: 100px;
+            border-bottom-right-radius: 100px;
+        }
+        .boxshadow{
+            /* 가로,세로,번짐 */
+            box-shadow: 3px 5px 5px slateblue, 5px 5px 5px lawngreen;
+        }
+    </style>
+    <div id="container">
+        <div class="dashed">dashed</div>
+        <div class="dotted">dotted</div>
+        <div class="double">double</div>
+        <div class="groove">groove</div>
+        <div class="inset">inset</div>
+        <div class="outset">outset</div>
+        <div class="ridge">ridge</div>
+        <div class="solid">solid</div>
+        <div class="total">total</div>
+    </div>
+        <img class="radius boxshadow" src="http://img.etoday.co.kr/pto_db/2016/07/20160727123941_911258_600_900.jpg"
+         alt="" width="200" height="200">
+    
+</body>
+</html>

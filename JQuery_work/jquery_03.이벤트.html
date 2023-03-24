@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <style>
+        div{
+            padding:30px;
+        }
+        .div{
+            width:200px;
+            height:200px;
+            border:1px red solid;
+        }
+        .innerDiv{
+            width:100px;
+            height:100px;
+            border:1px green solid;
+        }
+        .innerDiv2{
+            width:60px;
+            height:30px;
+            border:1px blue solid;
+        }
+    </style>
+</head>
+<body>
+    <div class="div">
+        outter
+        <div class="innerDiv">
+        inner
+        <div class="innerDiv2">
+                inner2
+            </div>
+        </div>
+    </div>
+    <script>
+        let tags=document.getElementsByTagName("div");
+        for(let i=0;i<tags.length;i++){
+            tags[i].addEventListener("click",function(e){
+                alert(tags[i].innerHTML+"이벤트실행");
+                e.stopPropagation();
+            })
+        }
+    </script>
+
+    <h3>이벤트 객체</h3>
+    <p>이벤트에 대한 정보를 담고있는 객체</p>
+    <button onclick="eventTest(event);">이벤트객체 확인</button>
+    <script>
+        function eventTest(e){
+            console.log(e);
+            console.log(e.path);
+            console.log(e.x,e.y);
+            console.log(e.target);
+        }
+    </script>
+
+    <h3>이벤트연결하기</h3>
+    <p>
+        on("이벤트명",이벤트처리함수) : 이벤트에 처리할 로직(함수)를 연결하는것
+    </p>
+    <div id="onTest">연결하기</div>
+
+    <div id="container">
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <h3>4</h3>
+        <h3>5</h3>
+        <span>6</span>
+        <span>7</span>
+        <h4>8</h4>
+        <h4>9</h4>
+        <h4>10</h4>
+    </div>
+
+    <div id="container2">
+        <p>다중이벤트 적용하기</p>
+    </div>
+
+    <img src="sea.jpg" alt="" width="100" height="100" class="test">
+    <img src="sea.jpg" alt="" width="100" height="100" class="test">
+    <img src="sea.jpg" alt="" width="100" height="100" class="test">
+    <img src="sea.jpg" alt="" width="100" height="100" class="test">
+
+    <script>
+        $(function(){
+            //이벤트처리시 필요한 데이터 넣고 출력하기
+            $(".test").each((i,v) => {
+                $(v).on("click",{order:i},e => {
+                    if(e.data["order"]%2==0){
+                        $(e.target).attr({
+                            width:"200",height:"200"
+                        });
+                    }
+                });
+            });
+
+            //on함수를 이용하여 한번에 여러개의 이벤트를 설정할 수 있음
+            //on함수 매개변수로 이벤트와 이벤트핸들러를 연결하여 객체로 전달하면 전달된 이벤트는 다 적용됨.
+            $("div#container2>p").on({
+                "click":function(e){
+                    $(e.target).css("color","aqua");
+                },
+                "mouseenter":e =>{
+                    $(e.target).css("border","1px lime solid");
+                },
+                "mouseleave":e =>{
+                    $(e.target).css("borderStyle","none");
+                }
+            })      
+            
+            $(function(){
+                $("div#container").children().filter((i,v)=>{
+                    return $(v).prop("tagName")=="P";
+                }).on("mouseenter",e =>{ 
+                    $(e.target).css("fontSize","30px");
+                });
+            })
+
+            //특정 태그에 이벤트연결하기
+            $("div#onTest").on("click",e => {
+                console.log(this);    //document객체
+                console.log(e.target);//이벤트가 발생한 객체
+                $(e.target).css("backgroundColor","green");
+            });
+        //     //화살표함수에서는 this를 쓸 수 없다.
+        //     $("div#onTest").on("click",function(e){
+        //         console.log(this);      //이벤트가 발생한 객체
+        //         console.log(e.target);
+        //         $(this).css("backgroundColor","green"); 
+        //     })
+        });
+    </script>
+
+
+
+    <h3>한번만 실행되는 이벤트연결하기</h3>
+    <p>
+        페이지가 로드되고 한번만 실행되는 이벤트
+        one()함수를 이용 -> 연결하는 방식은 on이랑 유사함
+    </p>
+    <div>
+        <h4 id="target1">한번만 실행되는 것</h4>
+    </div>
+    <script>
+        $(function(){
+            $("#target1").one("click",function(){
+                alert("한번만 실행!");
+            })
+        });
+    </script>
+
+    <h3>간단한 이벤트처리</h3>
+    <p>
+        이벤트명으로 함수를 만들어서 활용
+        이벤트 핸들러만(함수) 매개변수로 넣어주면됨
+    </p>    
+    <script>
+        $(function(){
+            $(window).resize(e =>{
+                console.log(window.innerWidth, window.innerHeight);
+            })
+            $(window).scroll(e => {
+                console.log(window.scrollX, window.scrollY);
+                console.log(window.innerWidth, screenY);
+            })
+            $("p").click((e) => {
+                alert("p클릭");
+            });
+        });
+    </script>
+
+    <form action="">
+        <select name="type" id="sel">
+            <option value="title">제목</option>
+            <option value="content">내용</option>
+            <option value="writer">작성자</option>
+        </select>
+            <input type="text" name="keyword">
+            <button type="button">검색</button> <br>
+            아이디<input type="text" name="userId" id="userId"><br>
+            비밀번호<input type="password" name="pw" id="pw"><br>
+            비밀번호확인<input type="password" id="pwck"> <span id="result"></span><br>
+    </form>
+    <script>
+        $(function(){
+            //커서가 창에서 나올때 change이벤트 발생
+            $("#sel").change(e => {
+                alert("야 골랐니! 골랐어?");
+                console.log($(e.target).val());//value값을 출력할 수 있음
+                $("input[name=keyword]").val($(e.target).val());
+            });
+
+            // $("#pwck").blur(function(){      //다른곳 클릭시 명확히
+            $("#pwck").keyup(function(){        //이미 명확히
+                let pw=$("#pw").val().trim();
+                let pwck=$(this).val().trim();
+                if(pw==pwck){
+                    $("#result").html("패스워드가 일치합니다.").css("color","green");
+                }else{
+                    $("#result").html("패스워드가 불일치합니다.").css("color","red");
+                }
+
+            })
+        })
+    </script>
+
+</body>
+</html>
+
+
+
+
+

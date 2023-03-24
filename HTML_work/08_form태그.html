@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form태그 이용하기</title>
+</head>
+<body>
+    <h1>get방식과 post방식</h1>
+    <p>
+        form 태그를 이용해서 데이터를 서버에 보낼때의 방식
+        1. post방식 : 외부에서 데이터 확인이 불가능하고, 크기에 제한이 없음
+        2. get방식 : 외부에서 데이터 확인이 가능하고, 크기에 제한이 있음
+        데이터를 보낼 위치는 action속성을 사용함
+        action : 주소 값을 대입
+        id : 프론트단
+        name : 백단으로 데이터를 넘겨줄때 주로 사용
+    </p>
+
+    <fieldset>
+        <legend>로그인</legend>
+        <form method="get" action="01_html구조.html">
+            아이디   <input type="text" name = "userId"><br>
+            패스워드 <input type="password" name="password"><br>
+                     <input type="submit" value="로그인"><br>
+        </form>
+    </fieldset>
+    
+    <form method = "get" action="01_html구조.html">
+        아이디 <input type="text" name = "userId"><br>
+        패스워드 <input type="password" name="password"><br>
+        <input type="submit" value="로그인"><br>
+    </form>
+
+    <h3>post방식으로 데이터 전송</h3>
+    <form action="01_html구조.html" method="post">
+        아이디<input type="text" name="id"><br>
+        패스워드<input type="password" name="password">
+        <input type="submit" value="블라블라">
+    </form>
+
+    <h2>input태그에 대해 알아보자</h2>
+    <form action="01_html구조.html">    
+        <input type="text" name="id" id="id" placeholder="아이디 입력" size="2">
+        <input type="password" name="pw" id="pw" placeholder="8~13자 입력">
+        <input type="hidden" name="idx" id="idx" value="80">
+        <input type="button" value="비밀번호확인" onclick="alert('버튼클릭')">
+        <button type="button">클릭</button>
+        <input type="submit" value="전송">
+    </form>
+
+    <form action="http://search.naver.com/search.naver" method="get">
+       <input type="text" name="query">
+       <input type="submit" value="네이버검색">
+    </form>
+
+    <!-- <script>
+        console.log(document.getElementById("id"));
+    </script> -->
+    <h3>checkbox, radio</h3>
+    <fieldset>
+        <legend>취미</legend>
+        <!-- multipartform(파일을 보내는 형태)는 get이 아닌 post로 설정해야함 (다른것들은 String이지만 
+            multipartform은 binary형태기 때문에) // 서버에 outputstream형태로 저장됨//파일명만 DB저장-->
+        <form action="" enctype="multipart/form-data">
+            <label><input type="checkbox" name="hobby" value="넷플릭스" disabled>넷플릭스</label>     
+            <input id="ex" type='checkbox' name="hobby" value="운동" checked>
+            <label for="san">운동</label>
+            <input type="checkbox" name="hobby" value="독서">독서
+            <input id ="san" type="checkbox" name="hobby" value="등산">등산
+            <hr>
+            <label><input type="radio" name="gender" value="M">남자</label>
+            <label><input type="radio" name="gender" checked value="F">여자</label>
+            <hr>
+            <input type="file" name="upload" multiple accept="audio/*">
+            <!-- <input type="submit" value="제출"> -->
+            <input type="image" src="187c3abb71.jpg" width="100" height="100">
+        </form>
+    </fieldset>
+
+    <h3>html15에서 추가된 타입</h3>
+    <form action="">
+        <p>색상선택</p>
+        <input type="color" name="color">
+        <hr>
+        <p>날짜입력받기</p>
+        날짜 <input type="date" name="day" max="2020-12-31" min="2020-01-01"><br>
+        날짜1 <input type="datetime" name="day1"><br>
+        날짜2 <input type="datetime-local" name="day2"><br>
+        날짜3 <input type="month" name="day3"><br>
+        날짜4 <input type="week" name="day4"><br>
+        날짜5 <input type="time" name="day5"><br>
+        <hr>
+        숫자 <input type="number" name="nval" min="0" max="50" step="5">
+        범위 <input type="range" name="level" value="10" min="0" max="10" step="2">
+        검색창 <input type="search" name="keyword" required>
+        url <input type="url" name="myhome">
+        email <input type="email" name="email">
+        <input type="submit" value="전송">
+    </form>
+
+    <form action="">
+        <p>select입력받기</p>
+        <select name="title" id="" multiple>
+            <optgroup label="title">
+                <option value="제목">제목</option>
+            </optgroup>
+            <optgroup label="contents">
+            <option value="내용">내용</option>
+            <option value="작성자">작성자</option>
+            </optgroup>
+        </select>
+
+        <p>다중행글을 입력받는 태그</p>
+        <textarea name="intro" cols="100" rows="5" style="resize:none">안녕하세요</textarea>
+        
+        <p>input태그에 값추천</p>
+        <input type="text" list="data" name="name">
+        <datalist id="data">
+            <option value="유병승" label="yoo"></option>
+            <option value="조현" label="cho"></option>
+            <option value="박철우" label="park"></option>
+            <option value="설진호" label="seol"></option>
+        </datalist> 
+        <progress id="p" value="50" max="100"></progress>
+    </form>
+    <script>
+        setInterval(() => {
+            var pr = document.getElementById("p")
+            pr.value=pr.value+Number(Math.random()*20);
+        }, 500);
+    </script>
+    <div id="container"></div>
+
+</body>
+</html>

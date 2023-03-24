@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM객체 활용하기</title>
+</head>
+
+<body>
+    <h1>태그추가하기</h1>
+    <div id="container"></div>
+    <button onclick="addTag();">태그추가하기</button>
+    <!-- 태그명, 문구 받아서 태그를 생성하고 div#container의 자식으로 넣기 -->
+    <br><br>
+    <input type="text" id="tagName"><input type="text" id="t"><button onclick="addTag2();">태그추가</button>
+    <script>
+        function addTag2() {
+            let tag = document.getElementById("tagName").value;
+            let text = document.getElementById("t").value;
+
+            let t = document.createElement(tag);
+            let te = document.createTextNode(text);
+            document.getElementById("container").appendChild(t);
+            t.appendChild(te);
+        }
+
+        function addTag() {
+            let area = document.getElementById("container");
+            //새로운 태그 만들기
+            //1.요소노드만들기
+            //document.createElement("태그명"); 함수를 이용
+            let tag = document.createElement("p");//<p></p> 메모리영역
+
+            //2.텍스트노드만들기
+            //document.createTextNode("문구");
+            let text = document.createTextNode("내가만든 첫번째 태그");
+
+            //3.요소노드와 텍스트노드 연결하기
+            //요소노드.appendChild(텍스트노드)//자식으로 태그를 넣는 함수
+            tag.appendChild(text);//<p>내가만든 첫번째태그</p>
+            //페이지에 있는 태그를 불러와서 연결해줘야지 생성된 태그가 출력됨
+            //area.appendchild(tag);//자식으로 연결
+            //area.insertAdjacentElement(
+                "afterbegin,tag");
+
+            //beforebegin : 지정객체의 앞에 대입(형제)
+            //afterend : 지정객체의 뒤에 대입(형제)
+            //beforeend : 지정객체의 자식으로 대입(맨뒤 자식으로) 
+            //afterbegin : 지정객체의 자식으로 대입(맨앞 자식으로)
+            //area.innerHTML+="<p>"
+
+            area.insertBefore(tag, area[2]);
+        }
+    </script>
+
+
+
+    <h3>텍스트노드가 없는 태그만들기</h3>
+    <p>
+        img, input, video, audio
+        텍스트노드가 없고 속성으로 값을 표현하는 태그
+        태그객체 생성 후 속성값을 설정해줘야함
+    </p>
+    <button onclick="imageAdd()">이미지추가</button>
+    <div id="imgContainer"></div>
+    <script>
+        function imageAdd() {
+            let img = document.createElement("img");//<img>
+            //속성값을 설정해줘야함.
+            //요소.setAttribute("속성명","속성값");
+            img.setAttribute("src", "https://lh3.googleusercontent.com/proxy/05PjGiiTm5urdGcxXl3prNdaxLfMZ2oARtAx_1X2RaEErye6sSryiv_4g7cJDZd4zfWO_ipwVKDFwBNrvr2T92aJzoc9WQcVCWCV3c5-r6HRzm0rhR_vXltc0g")
+            img.setAttribute("width", "200");
+            img.setAttribute("height", "200");
+            document.getElementById("imgContainer").appendChild(img);
+        }
+    </script>
+
+    <br>
+    <input type="file" name="upload" id="up"> <button onclick="addFile()">추가</button>
+    <script>
+        function addFile() {
+            let f = document.createElement("input");
+            f.setAttribute("type", "file");
+            f.setAttribute("name", "upload");
+            document.querySelector("[onclick='addFile()']")
+                .insertAdjacentElement("afterend", f);
+            //태그에 있는 속성값 가져오기<p id="name" class="" style="">
+            console.log(f.getAttribute("type"));
+            console.log(f.getAttribute("name"));
+        }
+    </script>
+
+    <!--
+        이미지 주소를 입력받고 버튼을 누르면 그 이미지가 추가되는 기능 만들기
+        이미지의 크기는 200X200으로 생성될 것 
+    -->
+    <br><br><br>
+    <input type="text" id=imgname>
+    <button onclick="imgAdd2();">이미지추가</button>
+    <button onclick="searchChildren();">자식찾기</button>
+
+    <div id="container2"></div>
+    <script>
+        function imgAdd2() {
+            let src = document.getElementById("imgname").value;
+            let img = document.createElement("img");
+            img.setAttribute("src", src);
+            img.setAttribute("width", "200");
+            img.setAttribute("height", "200");
+            document.getElementById("container2").appendChild(img);
+        }
+        //내가 원하는 태그를 찾기
+        function searchChildren() {
+            //특정태그의 자식들을 가져오기
+            const e = document.getElementById("container2");
+            console.log(e.children);
+            console.log(e.firstElementChild);
+            //
+            e.appendChild(e.firstElementChild);//위치이동
+            // console.log(document.body.children);
+            //특정태그의 부모찾기 
+            // console.log(e.parentElement.parentElement);
+            //형제
+            console.log(e.previousElementSibling);//같은레벨에서 위에 있는 태그
+            console.log(e.nextElementSibling);//같은레벨에서 다음에 있는 태그    
+        }
+    </script>
+
+
+    <h3>클래스속성 관리하기</h3>
+    <p>
+        클래스 속성값으로 style적용할 수 있기 때문에
+        태그에 스타일을 입힐때 자주 사용
+    </p>
+    <style>
+        .back1 {
+            background-color: royalblue;
+            color: ivory;
+        }
+
+        .back2 {
+            background-color: lime;
+            color: magenta;
+        }
+
+        .font {
+            font-size: 40px;
+            font-weight: bolder;
+            text-shadow: 3px 3px 5px gray;
+        }
+    </style>
+    <button onclick="addClass();">back1</button>
+    <button onclick="removeClass();">remove</button>
+    <button onclick="removeClassOne();">removeOne</button>
+    <h2 id="target" class="font back1" onmouseenter="removeClassOne();">Rclass여러분 힘내세요~~ 자바스크립트가 다 끝나가요 :)</h2>
+    <script>
+        function removeClassOne() {
+            let target = document.getElementById("target");
+            let list = target.classList;
+            list.remove("back1");
+            list.add("back2");
+        }
+        function addClass() {
+            let target = document.getElementById("target");
+            //class를 조작하기 : className,classList
+            console.log(target.className);
+            console.log(target.classList);
+            target.className = "font back1";//태그에 클래스 적용하기
+        }
+        function removeClass() {
+            let target = document.getElementById("target");
+            target.className = "back2";
+        }
+    </script>
+
+</body>
+
+</html>

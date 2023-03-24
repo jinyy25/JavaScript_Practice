@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>선택자</h1>
+    <p>
+        선택자는 페이지에 있는 원하는 element(태그)를 선택하는 것<br>
+        자주사용선택자 : id, class, tagclass
+        전체, 구조, 자식 후손, 반응, 속성, 동위선택자가 있음
+    </p>  
+
+    <h3>전체선택자</h3>
+    <p>선택자 선언부에 *를 사용하면 됨</p>
+    <style>
+        *{
+            font-size: 20px;
+        }
+        p{
+            font-size: 10px;
+        }
+    </style>
+    <table>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+        </tr>
+    </table>
+    
+    <h1>태그선택자</h1>
+    <p>태그명으로 스타일적용할 태그를 선택</p>
+    <table>
+        <tr>
+            <td>안녕</td>
+            <td>하이</td>
+            <td>올라</td>
+        </tr>
+        <tr>
+            <td>잘지내</td>
+            <td>자니</td>
+            <td>미안</td>
+        </tr>
+    </table>
+    <style>
+        table{
+            widows:200px;
+            height:200px;
+            border:1px red solid;
+        }
+        td{
+            border:1px green solid;
+            font-size: 18px;
+        }
+    </style>
+
+    <h3>아이디, 클래스 선택자</h3>
+    <p>
+        아이디선택자 : 태그속성 중 id값을 기준으로 선택하는 것 -> #아이디명
+        클래스선택자 : 태그속성 중 class값을 기준으로 선택 -> .클래스명
+    </p>
+
+    <p id="selectP" class="border">p1</p>
+    <p>p2</p>
+    <p Class="selectClass">Class p</p>
+    <h2 Class="selectClass border">Class h2</h2>
+    <span Class="selectClass">Class span</span>
+    <style>
+        #selectP{
+            font-size: 14px;
+            color: lightcoral;
+            background-color: lightgreen;
+        }
+        .selectClass{
+            font-weight:bolder;
+            color:lime;
+            background-color: aqua;
+        }
+        .border{
+        border:4px royalblue dotted;
+    }   
+    </style>
+
+    <ul>
+        <!-- &gt;&lt; -->
+        <li class="selectClass">메뉴</li>
+        <li>메뉴2</li>
+        <li>메뉴3</li>
+    </ul>
+
+    <h3>속성선택자</h3>
+    <p>
+        속성선택자는 태그의 특정속성을 선택하고 그 속성값과 비교하여 일치하는 
+        태그만 스타일을 적용하는 것
+        선택자[속성명 =|*=|^=|!=|$=속성값]{ 스타일속성 : 값;}
+    </p>
+    <style>
+        a[href^=www]{
+            /* 처음시작하는 값을 기준으로 값이 일치하는지 찾음 */
+            color:magenta;
+        }
+        a[href$=net]{
+            /* 마지막 값이 일치하는 태그 선택 */
+            background-color: slateblue;
+        }
+        a[href~=naver]{
+            /* 띄어쓰기를 기준으로 해당문자를 찾는 것 */
+            color:lime;
+        }
+        a[href|=www]{
+            /* -를 기준으로 앞에 글자가 맞는지 확인 */
+            text-decoration:line-through;
+        }
+        [width="100"]{
+            /* 일치하는 값 찾기 */
+            border:3px crimson outset;
+        }
+        [height*="0"]{
+            /* 포함하고 있는 값 찾기 */
+            border-radius: 50px;
+        }
+        input[type=checkbox]{
+            width:100px;
+            height:100px;
+            margin:20px;
+        }
+
+    </style>
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+    <input type="checkbox">
+
+    <div width="100" height="100">div1</div><br>
+    <img src="187c3abb71.jpg" alt="" width="100" height="100">
+    <p height="0">이건 0이야~</p>
+    <br>
+
+    <a href="www naver.com">^=</a>
+    <a href="www-naver.com">^=</a>
+    <a href="_wwwnaver.com">^=</a>
+    <br><br>
+    <a href="www naver.com www-">$=</a>
+    <a href="www-naver.net www-">$=</a>
+    <a href="_wwwnaver.co.kr">$=</a>
+    <a href="daum.net">$=</a>
+    <br><br>
+    <a href="www naver com">~=</a>
+    <a href="www-naver net naver">~=</a>
+    <a href="_wwwnaver co.kr">~=</a>
+    <a href="daum.net">$=</a>  
+
+    <h3>자식, 후손 선택자</h3>
+    <p>
+        특정 태그의 포함관계에 있는 태그를 선택
+        *태그들은 부모-자식관계로 구조화 되어 있음.
+        자식선택자 : 부모와 직접적으로 연결되어 있는 태그 -> 선택자 -> 선택자
+        후손선택자 : 부모가 포함하고 있는 모든 태그 -> 선택자 선택자
+    </p>
+    <header>
+        <h1>자식선택자 이용하기</h1>
+        <ul>
+            <li>직접연결안됨</li>
+            <li>직접연결안됨</li>
+            <li>직접연결안됨</li>
+            <li>직접연결안됨</li>
+        </ul>
+        <p>자식선택자</p>
+        <div class="innerDiv">
+            div1
+            <p>이건 idv 자식</p>
+        </div>
+        <div>
+            div2
+            <p>이건 idv 자식2</p>
+        </div>
+    </header>
+    <style>
+        /* header>div:nth-of-type(2)>p{
+            color:skyblue;
+        } */
+        ul>li{
+            background-color: gold;
+        }
+        header>*{
+            background-color: tomato;
+        }
+    </style>
+
+    <h2>후손선택자</h2>
+    <section>
+        <ul>
+            <li>하나</li>
+            <li>둘</li>
+            <li>셋</li>
+            <li>넷</li>
+            <li>
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </li>
+        </ul>
+        <li>h</li>
+        <li>hh</li>
+        <li>hhh</li>
+    </section>
+    <style>
+           section li{
+               color: gray;
+           } 
+    </style>
+    
+    <h3>동위선택자</h3>
+    <p>
+        같은 레벨에 있는 태그를 선택하는 선택자 형제
+        + : 다음에 있는 태그 한개
+        ~ : 다음에 있는 태그 전체
+    </p>
+    <header>
+        <p>0번 p</p>
+        <div></div>
+        <p>1번 p</p>
+        <p>2번 p</p>
+        <p>추가 p</p>
+        <div>div</div>
+        <div>
+            <p>div안 p</p>
+            <p>div안 p2</p>
+        </div>
+        <h4>1번 h1</h4>
+        <h4>2번 h1</h4>
+        <p>3번 p</p>
+        <p>4번 p</p>
+    </header>
+    <style>
+        div>p+p{
+            color:springgreen;
+        }
+        p~p{
+            background-color: lightseagreen;
+        }
+    </style>
+        <h3>반응선택자</h3>
+        <p>
+            마우스의 움직입에 따라 스타일 적용되는 것
+            클릭 / 마우스가 태그에 들어왔을때(mouseover)
+            선택자 : active{ } 클릭
+            선택자 : hover{ } mouseover됐을때
+        </p>
+        <p id="click">클릭하면 커져! 우왕!!</p>
+        <p class="hoverTest">마우스올라가면 글자색변해요 :)</p>
+        <ul>
+            <li><a href="">main</a></li>
+            <li id="board">게시판</li>
+            <nav>
+                <ul>
+                    <li>자유게시판</li>
+                    <li>모임게시판</li>
+                </ul>
+            </nav>
+            <li>갤러리</li>
+            <li>자료실</li>
+        </ul>
+        <style>
+            #board+nav>ul{
+                height:0px;
+                overflow: hidden;
+            }
+            #board:active+nav>ul{
+                height:100px;
+            }
+            #click:active{
+                font-size:40px;
+            }
+            .hoverTest:hover{
+                color:violet;
+            }
+        </style>
+        <h3>문자선택자</h3>
+        <p>
+            특정태그의 시작문자, 첫본째라인, 드래그로 선택했을때 style변경
+        </p>
+        <div id="container">    
+            <p>안녕하세요 저는 유병승입니다. 나이는 19살이고, 키는 180.5,
+                제가 사는 곳은 경기도 **시 입니다.
+            </p>
+            <p>나의 취미는 코딩, 독서이런거 아니고 tv,tv영화보기</p>
+            <p>여러분 열심히해서 꼬옥~ 꼬옥~ 취업합시다.</p>
+        </div>
+        <style>
+            div#container>p::first-letter{
+                font-size:50px;
+                color: moccasin; 
+            }
+            div#container>p::first-line{
+                background-color: orangered;
+            }
+            div#container>p::selection{
+                background-color:black;
+                color:red;
+            }
+            div#container>p::before{
+                /* content:"~m(^.~)m~" */
+                content:counter(rint);
+            }
+            div#container>p::after{
+                content:"-bs-"
+            }
+            div#container>p{
+                counter-increment: rint;
+            }
+        </style>
+        <h3>구조선택자</h3>
+        <p>
+            작성된 html구조에 의해 선택하는 것
+            선택자 : first-child
+            선택자 : last-child
+            선택자 : nth-child(2n)
+        </p>
+        <div id="container2">
+            <span>1111</span>
+            <h5>h5 1</h5>
+            <h5>h5 2</h5>
+            <div>
+                <h5>inner 1</h5>
+                <h5>inner 2</h5>
+                <h5>inner 3</h5>
+            </div>
+            <h5>h5 3</h5>
+            <h5>h5 4</h5>
+            <div><p>ppp</p></div>
+        </div>
+        <style>
+            /* 
+                type기준으로 선택
+                first-of-type 
+                last-of-type
+                nth-of-type
+            */
+            /* h5:first-of-type,div>p{
+                background-color:black;
+                color:white;
+            } */
+            h5:nth-child(2n){
+                font-size: 50px;
+            }
+            h5:first-child{
+               background-color: lime; 
+               color:yellow; 
+            }
+            h5:last-child{
+                background-color: lightgreen;
+                color:lightgoldenrodyellow;
+            }
+        </style>
+</body>
+</html>

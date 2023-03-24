@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #t1{
+            border-color: red;
+        }
+        #t2{
+            border-color: red;
+        }
+        #OutsideBorder{
+            border: 3px green solid;
+            height: 1000px;
+            width: 1000px;
+
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>기본 문법 문제</h1>
+    <p>문제1. 다음 보기에 있는 텍스트 필드에 작성한 문자열의 길이를 알아올 수 있도록 구현하시오</p>
+    <fieldset>
+        <legend>보기</legend>
+        <textarea name="" id="" cols="80" rows="1"></textarea> 
+    </fieldset>
+    <textarea name="t1" id="t1" cols="90" rows="10"></textarea> <br>
+    <button>확인하기</button>
+    
+    <p>문제2. 다음 보기에 있는 문자열을 ,(콤마)를 기준으로 잘라내어 하나하나 출력하시오</p>
+    <fieldset>
+    <legend>보기</legend>
+    <p>콜라,사이다,햄버거,피자,한약</p>
+    </fieldset> 
+    <textarea name="t2" id="t2" cols="90" rows="10"></textarea> <br>
+    <button>확인하기</button>
+    
+    <div id="OutsideBorder">
+        <h1>배열실습문제1</h1>
+        <p>
+            다음 보기에 있는 데이터들은 배열로 받고 하나의 배열로 합쳐보세요. <br>
+            이때 입력 필드에 있는 데이터를 전송하면 배열의 alert를 통하여  <br>
+            배열의위치를 알려주고, 없으면 "존재하지 않습니다"를 알려주면 됩니다. <br>
+        </p>  
+        <fieldset>
+            <legend>보기</legend>
+            <p>
+                사과,바나나,당근 <br>
+                김밥,치즈,떡볶이,햄버거 <br>
+                환타,사이다,콜라 <br>
+                고양이,강아지
+            </p>
+        </fieldset>
+        <input type="text"><br>
+        <button>전송 및 처리</button>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자식, 형제 객체 조회하기</title>
+    <script src="js/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+    <h3>자식요소 탐색하기</h3>
+    <p>
+        1. children(["매개변수"]) : 모든자손(직접연결)을 리턴해주는 함수 <br>
+        2. element.find(매개변수) : 모든 후존 중 매개변수와 일치하는 element반환 <br>
+    </p>
+    <table>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td><input type="text"></td>
+            <td><button>클릭</button></td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td><input type="text"></td>
+            <td><button>클릭</button></td>
+        </tr>
+    </table>
+    <button onclick="childrenTest();">자식요소찾기</button>
+    <script>
+        function childrenTest() {
+            console.log($("table>tbody").children().children());
+            console.log($("table>tbody").children().first());
+            //짝수 td만 배경색을 aqua로 변경
+            $("table>tbody").children().children().filter(function (i, v) {
+                return i % 2 == 0;
+            }).css("background", "aqua");
+
+            //table후손들 중에 input객체 찾기
+            console.log($("table").find("input"));
+        }
+    </script>
+
+    <h3>형제요소 탐색하기</h3>
+    <p>
+        $().siblings() : 선택된 요소의 앞뒤 모든요소(같은레벨)
+        $().next() : 선택된 요소의 뒤에 있는 한개요소
+        $().nextAll() : 선택된 요소의 뒤에 있는 모든요소
+        $().nextUntil([매개변수]) : 선택된 요소의 뒤에 있는 매개변수까지의 모든 요소들
+        $().prev() : 선택된 요소의 앞에 있는 한개 요소
+        $().prevAll() : 선택된 요소의 앞에 있는 모든 요소
+        $().prevUntil([매개변수]) : 선택된 요소의 앞에 있는 요소중 매개변수와 일치하는 요소전까지
+    </p>
+    <hr>
+    <div id="container">
+        <h2>h2 1</h2>
+        <h2>h2 2</h2>
+        <p>p1</p>
+        <p>p2</p>
+        <p>p3</p>
+        <p>p4</p>
+        <span>span1</span>
+        <span>span2</span>
+        <ul>
+            <li>li 1</li>
+            <li>li 2</li>
+            <li>li 3</li>
+            <li>li 4</li>
+        </ul>
+        <ul>
+            <li>li a</li>
+            <li>li b</li>
+            <li>li c</li>
+            <li>li d</li>
+        </ul>
+    </div>
+    <button onclick="testSiblings();">실행</button>
+    <script>
+        function testSiblings() {
+            //형제찾기
+            console.log($("#container>p:eq(2)").siblings());
+            $("#container>p:eq(2)").siblings().css("backgroundColor", "red"); //본인을 제외한 형제
+            //siblings(매개변수)
+            $("#container>p:eq(2)").siblings("h2").css("color", "yellow");
+
+            //앞에 요소 선택
+            $("#container>span:first").prev().prev().css("backgroundColor", "lime");
+            //앞에 있는 모든 요소 선택
+            $("#container>ul").prevAll().filter(function (i, v) {
+                return $(v).prop("tagName") == "H2"
+            }).css("backgroundColor", "navy");
+            //앞에 있는 모든요소 중 매개변수까지만 선택
+            $("#container>ul").prevUntil("p").css("backgroundColor", "magenta")
+            //뒤에 있는 요소
+            $("#container>h2:last").nextAll().css("color", "white");
+            $("#container>ul>li:eq(2)").next().css("backgroundColor", "lightgreen"); //li를 다모아서 선택되기 때문
+        }
+    </script>
+    <table id="test">
+        <tr>
+            <td><input type="text"></td>
+            <td><button class="addBtn">추가</button></td>
+        </tr>
+        <tr>
+            <td><input type="text"></td>
+            <td><button class="addBtn">추가</button></td>
+        </tr>
+        <tr>
+            <td><input type="text"></td>
+            <td>
+                <button class="addBtn">추가</button>
+            </td>
+        </tr>
+    </table>
+    <script>
+        $(".addBtn").click(function (e) {
+            //html()텍스트노드출력, html("태그생성됨")
+            console.log(e.target);
+            const t=e.target;
+            $(t).parent().prev().html(
+                $(t).parent().prev().html()+"<input type='text'>");
+        })
+    </script>
+
+</body>
+
+</html>

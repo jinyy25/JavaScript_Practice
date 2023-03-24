@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수선언하기</title>
+</head>
+
+<body>
+    <h1>함수선언하기</h1>
+    <p>
+        1. 선언적함수 -> 이름이 있는 함수
+        function 함수명([매개변수,...]){로직 [return 값]}
+        2. 익명함수 -> 이름이 없는 함수
+        function([매개변수,...]){로직 [return 값]};
+        *익명함수는 선언만하면 다시 호출이 불가능하기 때문에
+        변수에 대입하거나 매개변수로 넣는 용도로 사용을 함.
+    </p>
+
+    <!-- function이 있으면 먼저 전역공간으로 올라감 : hoisting -->
+    <h3>선언적함수</h3>
+    <button onclick="testFun();">선언적 함수실행</button>
+    <script>
+        //console.log(test);
+
+        //1.매개변수없고 리턴값도 없는 선언적함수
+        function testFun() {
+            alert("선언적함수!");
+        }
+
+        //2.매개변수있고 리턴값 없는 선언적함수
+        function testFun2(su, su2) {
+            //두 수를 더해주는 기능!
+            if (typeof (su) == "number" && typeof (su2) == "number") {
+                console.log(`두수의 합은 : ${su + su2}`);
+            }
+        }
+        testFun2(20, 10);
+        testFun2(20, "30");//+는 자동변환 제외
+        testFun2("안녕", "하세요");
+
+        //3.매개변수 있고 리턴값있는 선언적함수
+        function testFun3(su, su2) {
+            return [su, su2];
+        }
+        let total = testFun3(20, 30);
+        console.log(total);
+
+        //4.매개변수없고 리턴값있는 선언적함수
+        function testFun4() {
+            return {
+                name: "유병승",
+                age: 19,
+                height: 180.5,
+                email: "prince0324@naver.com"
+            }
+        }
+        let obj = testFun4();
+        console.log(obj);
+
+       //let test="";
+    </script>
+
+
+    <h3>익명함수</h3>
+    <p>
+        익명함수는 이름이 없는 함수를 의미
+        선언 : function(){ 로직[return 값]}
+        변수에 대입하지 않으면 호출이 불가능
+        -> 매개변수로 함수를 전달할때 사용
+    </p>
+    <h1 id="test">이거눌러봐~!</h1>
+    <div id="time"></div>
+    <script>
+        setInterval(function () {
+            const area = document.getElementById("time");
+            area.innerHTML = new Date();
+        }, 1000);
+        tt();
+        //f1();//??
+        //선언적함수랑 다를게 없음 -> hoisting    
+        let f1 = function () {
+            alert("안녕!");
+        }
+        //f1();
+        function tt() {
+            alert("이건되니?");
+        }
+
+        //매개변수로 함수를 전달해야할때 사용
+        let h1 = document.getElementById("test")
+        h1.addEventListener("click", function () {
+            alert("클릭함");
+        });
+
+        //익명함수 리턴으로 사용하기
+        function annoTest() {
+            //    return function(){
+            //        console.log("익명함수로 반환");
+            //    }
+            return () => console.log("익명함수");
+        }
+        let anno = annoTest();
+        console.log(typeof (anno));
+        anno();
+    </script>
+
+
+    <h3>익명함수를 반환하는 것을 통해 새로운 기능 적용 가능</h3>
+    <p>클로저 : </p>
+    <button onclick="closureTest()">클로저 테스트하기</button>
+    <script>
+        function clo() {
+            let ctest = 20;
+            console.log("clo실행");
+            return function (su) {
+                console.log(ctest + su);
+            }
+        }
+        function closureTest() {
+            let clotest = clo();
+            let v = clotest(10);
+            clotest();
+            //console.log(ctest);
+        }
+    </script>
+
+
+    <h3>자바스크립트 함수의 독특함</h3>
+    <script>
+        function argumentTest(su) {
+            console.log(su);
+            console.log(arguments);
+        }
+        argumentTest(20);
+        argumentTest();//매개변수가 있는데 없이 호출가능, 매개변수는 undefined대입
+        //매개변수를 지정한 수보다 많이 전달가능, 선언된 매개변수외 나머지는 무시
+        argumentTest(10, 20, 30, 40, 50);
+
+        function argument2() {
+            console.log("실행되니?");
+            console.log(arguments);
+            console.log(arguments[0]);
+            for (let i = 0; i < arguments.length; i++) {
+                console.log(arguments[i]);
+            }
+        }
+        argument2("이거출력!");
+        argument2(1, 2, 3, 4, 5, 6, 7);
+
+        //각 함수에는 argument객체가 있음
+        //함수로 전달되는 매개변수를 보관하는 함수
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <h3>요소생성하기</h3>
+    <div id="container"></div>
+    <input type="text" id="tag">
+    <button onclick="addElement();">요소추가하기</button>
+    <script>
+        function addElement(){
+            //val()함수로 input값을 불러올 수 있음
+            const t=$("#tag").val();
+            let tag=$("<"+t+">").html("내가추가한것");
+            $("#container").append(tag);
+
+            //jQuery방식으로 생성하기
+            console.log($("<input>").attr("type","checkbox"));
+            let input=$("<input>").attr("type","checkbox");
+            //document.createElement("input")
+            $("#container").append(input);
+            let p=$("<p>").html("남지선 선택!");
+            $("#container").append(p);    
+        }
+    </script>
+
+    <h3>생성된 요소를 페이지에 추가하기</h3>
+    <p>
+        특정요소의 자식으로 추가
+        1. append/appendTo : 특정요소의 맨마지막 자식으로 추가하는 것
+        2. prepend/prependTo : 특정요소의 맨앞 자식으로 추가하는 것
+        특정요소의 형제로 추가하기
+        1. after/insertAfter : 특정요소의 뒤에 추가하는 것
+        2. before/insertBefore : 특정요소의 앞에 추가하는 것
+    </p>
+    
+    <div id="container2" class="a">outter a
+        <div class="a">inner a</div>
+    </div>
+    <button onclick="appendTest()">append</button>
+    <button onclick="prependTest()">prepend</button>
+    <button onclick="beforeTest()">before</button>
+    <button onclick="afterTest()">after</button>
+    <script>
+        let container2=$("#container2");
+        container2=$(".a");
+        
+        function appendTest(){
+            let p=$("<p>").html("뒤에추가");
+            // container2.first().append(p);
+            // container2.appendTo(p);
+            p.appendTo(container2); 
+        }
+        function prependTest(){
+            let p=$("<p>").html("앞에추가");
+            container2.last().prepend(p);
+        }
+        function beforeTest(){
+            let p=$("<h3>").html("형제 앞에추가");
+            container2.before(p);
+        }
+        function afterTest(){
+            let p=$("<h3>").html("형제 뒤에추가");
+            container2.after(p);
+        }
+    </script>
+
+    <h3>append,prepend,before,after</h3>
+    <p>
+        새로운 요소를 넣을뿐만아니라 있는 요소의 위치를 이동
+    </p>
+    <div id="container3">
+        <h4>1</h4>
+        <h4>2</h4>
+        <h4>3</h4>
+    </div>
+    <style>
+        #container3{
+            border:1px red solid;
+            width:400px;
+            height:300px;
+        }
+    </style>
+    <button onclick="moveElement();">이동</button>
+    <script>
+        function moveElement(){
+            //$("#container3>h4").first().insertAfter($("#container3"));     
+            setInterval(()=>{
+                $("#container3>h4").last().prependTo($("#container3"));
+            },500);            
+        }
+    </script>
+</body>
+</html>

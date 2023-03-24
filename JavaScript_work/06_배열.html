@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열활용하기</title>
+</head>
+
+<body>
+
+    <h3>배열을 선언하고 활용하기</h3>
+    <p>
+        자바스크립트에서 배열은 자바의 컬렉션과 유사
+        특정자료형에 한정되지 않고 다양한 자료형을 보관할 수 있음
+        길이도 제한되지 않음
+    </p>
+    <script>
+        //배열 선언하기
+        //1. []이용하여 선언
+        // 선언과 동시에 초기화 : let arr[값, 값, 값...];
+        // 배열선언하기 let arr=[];
+        //자료형이 배열 : 배열의 함수를 이용할 수 있음
+        // * let arr;
+
+        //2. new 연산자 이용
+        // 선언과 동시에 초기화 : let arr=new Array(값, 값, 값...);
+        // 배열선언하기 : let arr=new Array([길이]);
+
+        let names = ["유병승", "설진호", "조현"];
+        let arrNames = new Array("인하준", "김다예", "김다희", "윤진영", "한수경", "강경록");
+
+        console.log(`[]로 선언한 배열 : ${names}`);
+        console.log(names, names.length);
+        console.log(`new Array()로 선언 : ${arrNames}`);
+        console.log(arrNames, arrNames.length);
+
+        name = [];
+        console.log(names);
+        arrNames = new Array(10);
+        console.log(arrNames);
+        console.log(arrNames[1]);   //값을 안넣었기 때문에 undefined
+
+        //배열을 호출할때는 인덱스를 이용함
+        let arr = [1, 2, 3, 4];
+        console.log(arr[0]);
+        console.log(arr[4]);
+
+        //배열에 값넣기 : 인덱스를 이용해서 값 대입
+        arr[0] = 10;
+        console.log(arr[0]);
+        arr[10] = 100;
+        console.log(arr[10]);
+        console.log(arr.length);    //할당된 값은 없지만 공간은 있음
+        console.log(arr[9]);        //undefined 
+
+        //배열에는 여러자료형을 보관할 수 있음
+        let arr2 = ["유병승", 19, 180.5, true, { name: "칼", level: 3 },
+            [5, 4, 6, 8], function () { alert("하이"); }];
+        for (let i = 0; i < arr2.length; i++) {
+            console.log(arr2[i], typeof (arr2[i]));
+        }
+
+        // 배열 안에 있는 배열, 객체, 함수 접근하기
+        console.log(arr2[4].name);
+        //arr2[4] 하나의 객체명으로 보면 됨//name(하나의 속성) 직접접근 가능
+        console.log(arr2[4].level);
+        //배열 안 배열
+        console.log(arr2[5]); //[5,4,6,8]
+        console.log(arr2[5][1]); //4
+        //배열 안 함수
+        console.log(arr2[6]);
+        //함수 호출(실행)시키려면
+        // console.log(arr2[6]()); //리턴 값 없어서 undefined
+
+        // for문에서 함수sms 실행시키고 나머지는 console에 출력하기
+        for (let i = 0; i < arr2.length; i++) {
+            if (typeof arr2[i] != "function") {
+                console.log(arr2[i]);
+            } else {
+                console.log(arr2[i]());
+            }
+        }
+    </script>
+
+
+    <h3>배열의 내장함수 사용해보기</h3>
+    <p>배열도 객체이기 때문에 배열을 활용하는 함수를 가지고 있음</p>
+
+    <p>indexof() : 배열에서 매개변수와 일치하는 값의 인덱스를 반환해주는 함수</p>
+    <!-- 입력받아서 위치 찾기 -->
+    <input type="text" id="keyword">
+    <button onclick="searchFood();">음식찾기</button>
+
+    <div id="area"></div>
+    <script>
+        // function searchFood(){
+        //     let foods=["낙곱새","피자","파스타","초밥","쌀국수","엽떡"];
+        //     const area=document.getElementById("area");
+        //     area.innerHTML=`초밥 위치는 : ${foods.indexOf('초밥')}<br>`;
+        // }
+
+
+        function searchFood() {
+            let foods = ["낙곱새", "피자", "파스타", "초밥", "쌀국수", "엽떡"];
+            const area = document.getElementById("area");
+            const val = document.getElementById("keyword").value;
+            area.innerHTML = `${val} 위치는 : ${foods.indexOf(val)}<br>`;
+        }
+    </script>
+
+
+    <p>concat(배열) : 두개의 배열을 합치는 함수</p>
+    <button onclick="concatTest();">실행</button>
+    <div id="area2"></div>
+    <script>
+        function concatTest() {
+            let city = ["대전", "포천", "뉴욕", "다낭", "서울", "쿠알라룸풔"];
+            let animal = ["돌고래", "수달", "키위새", "쿼카"];
+            let lang = ["java", "oracle", "html/css", "javascript"];
+            const area = document.getElementById("area2");
+            let total = city.concat(animal, lang);
+            //total=animal.concat(city);
+            area.innerHTML = `두 배열 합친결과 : ${total}<br>`;
+            area.innerHTML += `city : ${city}<br>`;
+            area.innerHTML += `animal : ${animal}<br>`;
+        }
+    </script>
+
+
+    <p>join() : 배열을 문자열로 반환하는 것</p>
+    <button onclick="joinTest();">join실행</button>
+    <div id="area3"></div>
+    <script>
+        function joinTest() {
+            const area = document.getElementById("area3");
+            let arr = ["김연아", "공유", "박보영", "한효주"];
+            console.log(arr);
+            console.log(arr.join());
+        }   
+    </script>
+
+
+    <p>reverse() : 배열의 순서를 변경(역순)</p>
+    <button onclick="reverseTest();">reverseTest</button>
+    <script>
+        function reverseTest() {
+            let arr = [1, 2, 3, 4, 5, 6];
+            console.log(arr);
+            console.log(arr.reverse());
+        }
+    </script>
+
+    <p>sort() : 배열을 정렬하는 함수</p>
+    <button onclick="sortTest();">정렬하기</button>
+    <script>
+        function sortTest() {
+            let arr = [1, 6, 3, 9, 8, 2, 0, 4];
+            console.log(arr);
+            console.log(arr.sort());
+            //내림차순으로 정렬하고 싶으면 (람다식)
+            console.log(arr.sort(function (left, right) { return right - left; }));
+            console.log(arr.sort().reverse());
+            //ECM6에서 화살표함수로 더 간단히 표현
+            //(매개변수, 매개변수...) => { 로직 return} || 리턴값
+            console.log(arr.sort((left, right) => left - right));
+
+            arr = ['가', '라', '하', '나', '마', '다'];
+            // console.log(arr[0]-arr[1]);
+            console.log(arr[0] < arr[1]);
+            // arr.sort((left,right)=>{
+            //     if(left>right) return -1;
+            //     else if(left<right) return +1;
+            //     else return 0;
+            // });
+            arr.sort();
+            console.log(arr);
+        }
+    </script>
+
+
+    <h3>배열의 데이터를 삽입, 삭제, 수정하는 함수</h3>
+    <p>
+        삽입삭제하기
+        1. 맨뒤에 추가 : push(), 맨뒤값 삭제 : pop();
+        2. 맨앞에 추가 : unshift(), 맨앞값 삭제 : shift();
+    </p>
+    <input type="text" id="hobby">
+    <button onclick="pushTest(prompt('취미입력'));">push</button>
+    <button onclick="popTest();">pop</button>
+    <button onclick="unshiftTest();">unshift</button>
+    <button onclick="shiftTest();">shift</button>
+    <script>
+        // let arrTest=["독서","공부","코딩"];
+        let arrTest = [];
+        function pushTest() {
+            const v = document.getElementById("hobby").value;
+            arrTest.push(v);
+            console.log(arrTest);
+        }
+        function popTest() {
+            //맨앞에 인덱스 지우기
+            arrTest.pop();
+            console.log(arrTest);
+        }
+        function unshiftTest() {
+            //맨앞에 값 추가하기
+            const v = document.getElementById("hobby").value;
+            arrTest.unshift(v);
+            console.log(arrTest);
+        }
+        function shiftTest() {
+            //맨앞에 인덱스 지우기 :0번인덱스
+            arrTest.shift();
+            console.log(arrTest);
+        }
+    </script>
+
+    <h3>일부수정하기</h3>
+    <p>
+        slice() : 배열의 일부를 짤라내서 새배열을 만들어주는 함수
+        splice() : 배열의 특정 위치 값을 지우고, 그 위치에 값을 추가
+    </p>
+    <button onclick="sliceTest();">slice</button>
+    <button onclick="spliceTest();">splice</button>
+    <script>
+        arrTest = ["찜닭", "백반", "떡볶이", "순두부", "제육", "스파게티"];
+        function sliceTest() {
+            let sliceArr = arrTest.slice(2, 5);//맨뒤에것 포함x
+            sliceArr = arrTest.slice(arrTest.indexOf('순두부'), arrTest.indexOf('제육') + 1);
+            console.log(sliceArr);
+            console.log(arrTest);
+        }
+        function spliceTest() {
+            //splice(시작인덱스, 삭제갯수, 추가할값[,추가값, 추가값]);
+            console.log(arrTest);
+            arrTest.splice(2, 2, "순대", "튀김");
+            console.log(arrTest);
+        }
+    </script>
+    <p>
+        find() : 배열의 값을 찾는 함수, 특정조건에 있는 배열값 (첫번째값)한개만 가져오는 함수
+        filter() : 배열의 값을 찾는 함수, 특정조건에 해당하는 모든 배열값을 가져오는 함수
+    </p>
+    <button onclick="findTest();">find</button>
+    <button onclick="filterTest();">filter</button>
+
+    <script>
+        function findTest() {
+            let arrValue = arrTest.find(function (v) {   //v는 매개변수명
+                // console.log(v);
+                //true를 리턴하는 값 1개만 출력
+                return v.length == 2;
+            });
+            console.log(arrValue);
+        }
+        function filterTest() {
+            // "찜닭","백반","떡볶이","순두부","제육","스파게티"
+            let arrValue = arrTest.filter(function (item) {
+                return item.length == 4;
+            });
+            console.log(arrValue);
+        }
+
+        let test = {
+            val: ["찜닭", "백반", "떡볶이", "순두부", "제육", "스파게티"],
+            filter: function (f) {
+
+                const arr = this.val;
+                //f==함수
+                let returnVal = [];
+
+                if (typeof (f) == "function") {
+
+                    for (let i = 0; i < arr.length; i++) {
+                        let result = f(arr[i]);
+                        if (result) {
+                            returnVal.push(arr[i]);
+                        }
+                    }
+                }
+                return returnVal;
+            }
+        }
+        let test1 = test.filter(function (item) {
+            return item.length == 3;
+        });
+        console.log(test1);
+    </script>
+
+    <p>
+        includes() : 배열에서 특정값이 있는지 확인하는 함수
+        forEach() : 배열을 전체 순회하는 함수
+    </p>
+    <script>
+        console.log(arrTest.includes("떡볶이"));
+
+        //배열전체를 순회하는 함수 : .forEach(function(value, index))
+        arrTest.forEach(function (val, index) {
+            console.log(index, val);
+        });
+    </script>
+
+</body>
+
+</html>

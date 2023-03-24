@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Single+Day&family=Stylish&display=swap" rel="stylesheet">
+    <title>목록스타일</title>
+</head>
+<body>
+    <ul>
+        <li><a href="">메인메뉴</a></li>
+        <li><a href="">즉시대출가능</a></li>
+        <li><a href="">복권추첨</a></li>
+        <li><a href="">네이버연결</a></li>
+    </ul>
+    <ol>
+        <li>하나</li>
+        <li>둘</li>
+        <li>셋</li>
+        <li>넷</li>
+    </ol>
+    <h1>목록태그 이미지 넣기</h1>
+    <ul>
+        <li>유병승</li>
+        <li>이하영</li>
+        <li>이요셉</li>
+        <li>이윤나</li>
+    </ul>
+    <style>
+        ul:last-of-type{
+            list-style-image:url("peng.jpg");
+            list-style-position: inside;
+        }
+        ol{
+            /* list-style-type: decimal-leading-zero; */
+            /* list-style-type:lower-latin; */
+            /* list-style-type:upper-alpha; */
+            /* list-style-type:lower-alpha; */
+            list-style-type:upper-roman;
+        }
+        li>a{
+            text-decoration: none;
+            font-size:20px;
+            font-family: "Single Day";
+            color:limegreen;
+        }
+        li{
+            line-height: 40px;
+        }
+        ul:first-child{
+           /* default값 list-style-type: disc;*/
+           /* list-style-type: circle; */
+           /* list-style-type: square; */
+           list-style-type: none;
+        }
+    </style>
+</body>
+</html>

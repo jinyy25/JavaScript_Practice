@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체</title>
+</head>
+
+<body>
+    <h1>객체의 선언 및 호출</h1>
+    <p>
+        객체는 key와 value로 연결되어 있음. 객체에 데이터를 보관하는
+        property(멤버변수)는 모든 자료형이 저장이 가능함(변수와 동일)
+    </p>
+    <script>
+        //객체선언하기
+        let obj = {};//객체선언, 빈객체 
+        obj = {
+            name: "유병승",
+            age: 19,
+            height: 180.5,
+            birthDay: new Date(),
+            hobby: ["코딩", "독서", "공부"],
+            toString: function () {
+                console.log(this.name, this.age, this.height, this.birthDay, this.hobby);
+            }
+        }
+        console.log(obj);
+
+        //객체의 property에 접근하기
+        //접근방법은 두가지가 있음 : [], .
+        //[]에는 string값을 넣어주어야함
+        //접근할땐 반드시 key값을 알고 있어야함.
+        console.log(obj.name);
+        console.log(obj["name"]);
+        let key = "age";
+        // console.log(obj.key);
+        console.log(obj[key]);
+
+        //객체에 있는 함수호출
+        obj["toString"]();
+        //배열에 접근하기
+        console.log(obj["hobby"][0]);
+        console.log(obj["hobby"].length);
+
+        //속성명==변수명이랑 명명규칙이 비슷
+        //속성명에 특수기호나 띄어쓰기가 가능할까?
+        //가능~ 속성명 문자열형식 작성이 가능
+        let obj2 = {
+            '^.~': "호호호윙크"
+        }
+        // console.log(obj2.^.~); ->불가
+        //문자열로 선언한 property명은 []연산으로만 접근 가능
+        console.log(obj2['^.~']);
+
+        //객체에 있는 모든 값을 출력하고 싶음
+        //key/value로 매핑이 되어있기 때문에 key만알면 다 접근할 수 있음
+        //key값만 전달해주는 for문 제공 -> for.in문
+        for (let a in obj) {
+            console.log(a);
+            console.log(a, obj[a]);
+        }
+
+        //객체 안에 객체를 선언할 수 있나?
+        obj2 = {
+            test: "rorcp?",
+            oo: {
+                key: "호호",
+                size: 200
+            }
+        }
+        console.log(obj2);
+
+        //객체의 전체 순회
+        for (let o in obj) {
+            if (typeof (obj[o]) == 'object') {
+                for (let o2 in obj2[o]) {
+                    console.log(obj[o][o2]);
+                }
+            } else {
+                console.log(obj[o]);
+            }
+        }
+
+        //객체에 property추가/삭제하기
+        let changeObj = {};
+        console.log(changeObj);
+        //property추가하기
+        changeObj.name = "추가이름";
+        console.log(changeObj);
+        changeObj.plus = function (su, su2) { return su + su2 };
+        console.log(changeObj);
+
+        changeObj["size"] = 500;
+        console.log(changeObj);
+        changeObj["name"] = "조현";
+        console.log(changeObj["name"], changeObj["age"]);
+        typeof (changeObj["age"]) == "undefined" && console.log(changeObj.age = 20);
+        console.log(changeObj);
+
+        //property삭제하기
+        delete (changeObj["age"]);
+        console.log(changeObj);
+    </script>
+
+    <h2>객체배열</h2>
+    <p>배열을 선언해서 배열안에 객체를 넣는것</p>
+    <script>
+        let arrObj = [];
+        let s = {
+            name: "조현",
+            age: 28,
+            grade: 3
+        }
+        let s1 = {
+            name: "설진호",
+            age: 30,
+            grade: 2
+        }
+        let s2 = {
+            name: "이세현",
+            age: 27,
+            grade: 1
+        }
+        let s3 = {
+            name: "박철우",
+            age: 27,
+            grade: 1
+        }
+        arrObj.push(s);
+        arrObj.push(s1);
+        arrObj.push(s2);
+        arrObj.push(s3);
+        console.log(arrObj);
+
+        for (let i = 0; i < arrObj.length; i++) {
+            console.log(arrObj[i]["name"]);
+            console.log(arrObj[i]["age"]);
+            console.log(arrObj[i]["grade"]);
+        }
+    </script>
+
+    <h1>함수를 이용한 객체 생성방법</h1>
+    <p>객체 생성용 함수를 만들어서 활용방법 -> 객체를 리턴하는 함수</p>
+    <button onclick="createTable();">데이터대입</button>
+    <table id="person"></table>
+
+    <script>
+        function createPerson(name, age, salary, address) {
+            let t = {
+                name: name,
+                age: age,
+                salary: salary,
+                address: address
+            }
+            return t;
+        }
+        // let p=createPerson("조현",28,50,"서울시 중구");
+        // let p1=createPerson("설진호",30,20,"경기도 포천");
+        // let p2=createPerson("인하준",26,"서울시 집");
+        let persons = [createPerson("조현", 28, 50, "서울시 중구"),
+        createPerson("설진호", 30, 20, "경기도 포천"),
+        createPerson("인하준", 26, 1000000, "서울시 집")
+        ];
+        console.log(persons);
+        function createTable() {
+            //table에 persons데이터 넣기
+            let table = document.getElementById("person");
+            table.innerHTML = "<tr><th>이름</th><th>나이</th><th>월급</th><th>주소</th></tr>"
+            table.innerHTML += "<tbody>";
+            for (let i = 0; i < persons.length; i++) {
+                let tr = "";
+                tr += "<tr>";
+                tr += "<td>" + persons[i]["name"] + "</td>";
+                tr += "<td>" + persons[i]["age"] + "</td>";
+                tr += "<td>" + persons[i]["salary"] + "</td>";
+                tr += "<td>" + persons[i]["address"] + "</td>";
+                tr += "</tr>";
+                table.innerHTML += tr;
+            }
+            table.innerHTML += "</tbody>";
+        }
+    </script>
+    <h4>생성자함수이용하기</h4>
+    <p>
+        생성자함수 객체를 생성하는 함수 new연산자를 통해 생성을 하게 하고
+        prototype(원시자료형)이용하여 공용함수를 저장
+    </p>
+    <script>
+        function Member(id, pw, name, email) {
+            // this.id=id;
+            // this.pw=pw;
+            // this.name=name;
+            // this.email=email;
+            //캡슐화적용하기
+            var id = id;
+            var pw = pw;
+            var name = name;
+            var email = email;
+
+            //closure를 통해서 get/set를 구현
+            this.getId = function () {
+                return id;
+            }
+            this.getPw = function () {
+                return pw;
+            }
+            this.getName = function () {
+                return name;
+            }
+            this.setId = function (id) {
+                id = id1;
+            }
+            this.setName = function (name1) {
+                if (typeof (name1) == "string") name = name1;
+                else console.error("값을 넣을 수 없습니다");
+            }
+            this.toString = function () {
+                return this.id + this.pw + this.name + this.email;
+            }
+        }
+        let m = new Member("admin", "1234", "관리자", "prince0324@naver.com");
+        console.log(m);
+        console.log(m.getName());   //get을 통해서만 호출
+        m.name = 999;                 //m객체에 새로운 name property가 생성
+        m.setName(999);
+        console.log(m.getName());
+    </script>
+
+</body>
+
+</html>

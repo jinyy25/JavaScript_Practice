@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery이용하기</title>
+    <!-- cdn방식으로 이용하기 -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script>
+
+        //자바스크립트에서는 onload이벤트를 좀더 간결하고 편하게 활용할 수 있음
+        window.onload = function () {
+            //한개만 등록할 수 있음
+            document.getElementById("target").innerHTML = "이건 onload첫번째";
+        }
+        onload = function () {
+            document.getElementById("target").innerHTML = "이건 onload두번째";
+        }
+
+        //자바스크립트 형식
+        $(document).ready(function () {
+            //함수기반으로 되어있음
+            $("#target").html("이건 첫번째 jQuery");
+        });
+        //간편한 방식
+        $(function () {
+            $("#target").html($("#target").html() + "이건 두번째 jQuery");
+        });
+
+    </script>
+</head>
+
+<body>
+    <h1>jquery를 이용하는 방식</h1>
+    <p>
+        라이브러리파일을 페이지에 가져와야지 jquery를 이용할 수 있음
+        1. CDN방식 : 파일을 제공하는 서버에서 페이지를 오픈할때마다 가져옴
+        * 네트워크 연결이 되어있지 않으면 받아올 수 없음
+        2. 다운로드 : 파일을 다운받아 운영하는 방식
+        * 네트워크가 연결되어있지 않아도 사용이 가능함
+
+        jQuery도 js파일로 되어있어 external방식으로 js파일을 불러오면됨.
+    </p>
+    <p id="target">이거 한번 바꿔봐!</p>
+    <button onclick="basicJquery();">변경하기</button>
+    <script>
+        function basicJquery() {
+            $("#target").html("내가 변경했지! 이게 바로 jquery");
+        }
+    </script>
+    <h3>간편한 jquery적용하기</h3>
+    <h4>1</h4>
+    <h4>2</h4>
+    <h4>3</h4>
+    <h4>4</h4>
+    <h4>5</h4>
+    <button onclick="changeValue();">값변경하기</button>
+    <script>
+        function changeValue() {
+            // let el=document.getElementsByTagName("h4");
+            // for(let i=0;i<el.length;i++){
+            //     el[i].style.color="red"; 
+            // }
+            console.log($("h4"));
+            $("h4").css("color", "red");
+        }
+    </script>
+    <h3>선택자 이용해서 element선택하기</h3>
+    <p>1</p>
+    <p class="a">2</p>
+    <p>3</p>
+    <h3 class="a">4</h3>
+    <h3>5</h3>
+    <h3 class="a">6</h3>
+    <span>7</span>
+    <span class="a">8</span>
+    <button onclick="testSelector();">선택자 테스트</button>
+    <script>
+        function testSelector() {
+            console.log($(".a:odd").html("홀수"));
+            $(".a:even").html("짝수");
+            $(".a:first").css("backgroundColor", "lime");
+            $(".a:eq(2)").css("color", "skyblue");
+        }
+    </script>
+
+</body>
+
+</html>

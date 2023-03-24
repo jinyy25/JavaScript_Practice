@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>목록사용하기</title>
+</head>
+<body>
+    <h1>순서가 없는 목록태그 활용하기</h1>
+    <ul>
+        <li><h3>냉면</h3></li>
+        <li><h4>갈비</h4></li>
+        <li><h5>삼겹살</h5></li>
+        <li><h6>비빔밥</h6></li>
+        <li>
+            <ul>
+                <li>콜라</li>
+                <li>오렌지쥬스</li>
+                <li>커피</li>
+            </ul>
+        </li>
+    </ul>
+    <h3>list태그를 이용해서 메뉴 navigator를 만듬</h3>
+    <nav>
+        <ul>
+            <li>main</li>
+            <li>board</li>
+            <li>gallary</li>
+            <li>warehouse</li>
+        </ul>
+    </nav>
+    <style>
+        nav>ul>li{
+            display : inline;
+            font-size:20px;
+            color: lightgreen;
+            font-weight: bolder;
+            margin-right:10px;
+        }
+        nav>ul>li:hover{
+            color : lime;
+        }
+    </style>
+    <h1>순서가 있는 태그 활용하기</h1>
+    <ol type="A" start="3">
+        <li>유병승</li>
+        <li>김세민</li>
+        <li>이요셉</li>
+        <li>이하영</li>
+    </ol>
+    <ol type="I" start="5">
+        <li>유병승</li>
+        <li>김세민</li>
+        <li>이요셉</li>
+        <li>이하영</li>
+    </ol>
+    <h3> 순서를 역순으로 하려면</h3>
+    <ol type="D" reversed>
+        <li>유병승</li>
+        <li>김세민</li>
+        <li>이요셉</li>
+        <li>이하영</li>
+    </ol>
+    <h1>정의목록태그</h1>        
+    <dl>
+        <dt><h3>apple</h3></dt>
+        <dd>명.사과</dd>
+        <dd>명.회사명</dd>
+    </dl>
+</body>
+</html>

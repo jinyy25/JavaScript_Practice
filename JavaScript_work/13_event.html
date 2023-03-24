@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트적용하기</title>
+</head>
+
+<body>
+    <h1>이벤트속성알아보기</h1>
+    <dl>
+        <dt>input태그관련 이벤트</dt>
+        <!-- focus : 커서가 올라가 있어서 깜빡이는것 -->
+        <dd>focus : input태그에 focus되었을때</dd>
+        <dd>blur : input태그에서 빠져나왔을때 (focus잃었을때)</dd>
+        <dd>change : value속성이 변경되었을때 *select태그 </dd>
+        <dd>submit : form태그를 제출할때</dd>
+        <dd>reset : form태그에서 취소할때</dd>
+    </dl>
+    <dl>
+        <dt>mouse관련태그</dt>
+        <dd>click : 지정한 태그에 마우스클릭했을때</dd>
+        <dd>dbclick : 지정한 태그에 마우스를 더블클릭했을때</dd>
+        <dd>mouseenter : 지정태그영역안에 마우스(pointer)가 들어왔을때</dd>
+        <dd>mouseleave : 지정태그영역안에서 마우스가(pointer) 영역밖으로 나갔을때</dd>
+    </dl>
+    <dl>
+        <dt>key관련 이벤트</dt>
+        <dd>keyup : 키가 올라왔을때</dd>
+        <dd>keydouwn : 키가 내려갔을떄</dd>
+        <dd>keypress : 키가 눌렀다가 떨어졌을때</dd>
+    </dl>
+
+    <dl>
+        <dt>윈도우창 관련 이벤트</dt>
+        <dd>load : 페이지의 태그들이 다 로드 됐을때</dd>
+        <dd>resize : 윈도우창 크기가 조절됐을때</dd>
+        <dd>scroll : 스크롤바를 조작했을때</dd>
+    </dl>
+
+    <h2>고전이벤트방식으로 연결하기</h2>
+    <h3>클릭했을때 변경하기!1</h3>
+    <h3>클릭했을때 변경하기!2</h3>
+    <h3>클릭했을때 변경하기!3</h3>
+    <h3>클릭했을때 변경하기!4</h3>
+    <h3>클릭했을때 변경하기!5</h3>
+    <script>
+        let h3 = document.getElementsByTagName("h3");
+        //배열형태라서 이벤트를 연결하려면 각 객체에 따로 접근해야함
+        for (let i = 0; i < h3.length; i++) {
+            h3[i].onclick = function () {
+                console.log(this);
+                this.style.backgroundColor = "rgb(" + (100 + (30 * i)) + ",0,0)";
+                this.previousElementSibling.innerHTML = i + "변경되라!";
+            }
+            h3[i].onmouseenter = meTest;
+        }
+        function meTest() {
+            console.log(this);
+            this.classList.add("font");
+        }    
+    </script>
+    <style>
+        .font {
+            font-size: 28px;
+            font-weight: bolder;
+        }
+    </style>
+
+    <h3>표준방식 이벤트 처리하기</h3>
+    <p>
+        addEventListener()이용하여 이벤트
+        첫번째 매개변수 이벤트속성
+        두번째 매개변수 이벤트 핸들러(함수)
+    </p>
+    <form action="">
+        아이디<input type="text" name="userId" id="userId"> <br>
+        비밀번호<input type="password" name="pw" id="pw"><br>
+        비밀번호확인<input type="password" id="pwck"><span id="result"></span><br>
+        <select name="title">
+            <option value="title">제목</option>
+            <option value="content">내용</option>
+            <option value="writer">작성자</option>
+        </select>
+        <input type="text" name="keyword">
+        <input type="submit" value="제출">
+    </form>
+    <script>
+        onload = function () {
+            let userId = document.getElementById("userId");
+            let pw = document.getElementById("pw");
+            let pwck = document.getElementById("pwck");
+            userId.addEventListener("focus", function () {
+                this.style.backgroundColor = "red";
+                this.style.color = "yellow";
+            });
+            userId.addEventListener("blur", function (e) {
+                //이벤트핸들러에는 자동으로 매개변수로 Event객체를 넣어줌
+                //Event객체는 이벤트 발생에 대한 각종 정보를 가지고 있는 객체임
+                //예) 마우스 클릭위치, 이벤트가 발생한 객체, 발생위치
+                console.log(e);
+                e.target.style.backgroundColor = "white";
+                e.target.style.color = "black";
+            });
+            pwck.addEventListener("keyup", function (e) {
+                let check = e.target.value;//비밀번호 확인값
+                let pwori = pw.value;//비밀번호 값
+                let result = document.getElementById("result");
+                if (check == pwori) {
+                    result.innerHTML = "비밀번호가 일치합니다.";
+                    result.style.color = "green";
+                } else {
+                    result.innerHTML = "비밀번호가 일치하지 않습니다.";
+                    result.style.color = "red";
+                }
+            });
+            let select = document.getElementsByTagName("select")[0];
+            select.addEventListener("change", function (e) {
+                //다음에 있는 input태그에 값넣기
+                // this.nextElementSibling.value=this.value;
+                e.target.nextElementSibling.value = this.value;
+                alert("select 선택됨");
+            });
+        }
+        window.addEventListener("resize", function (e) {
+            console.log(this.innerWidth, this.innerHeight);
+        });
+        window.addEventListener("scroll", function (e) {
+            console.log(this.innerWidth, this.innerHeight)
+        });
+    </script>
+
+    <h2>기본이벤트차단하기</h2>
+    <p>
+        submit : 클린하면 데이터를 가지고 action주소에 요청을 하는 이벤트가 있음
+        a : 클릭하면 페이지이동하는 기본 이벤트가 있음
+    </p>
+    <a href="http://www.naver.com" onclick="prevent(event);">네이버</a>
+    <script>
+        function prevent(e) {
+            console.log(this);
+            console.log(e);
+            e.preventDefault();//a태그의 기본이벤트를 제거
+        }
+    </script>
+
+    <h3>submit제거</h3>
+    <form action="">
+        <input type="text" name="userId" id="userIda">
+        <input type="password" name="pw" id="pwa">
+        <input type="submit" value="제출" onclick="return invalidate();">
+    </form>
+    <script>
+        function invalidate() {
+            const userId = document.getElementById("userIda");
+            const pw = document.getElementById("pwa");
+            if (userId.value.length < 4) {
+                alert("4글자이상입력하세요")
+                return false;
+            }
+            if (pw.value.length < 8) {
+                alert("8글자 이상입력하세요");
+                return false;
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

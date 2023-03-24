@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM객체</title>
+</head>
+
+<body>
+
+    <h3>BOM객체에 대해 알아보자!</h3>
+    <p>
+        대부분 브라우저에 대한 정보를 제공하는 객체로
+        location, navigator, screen, history
+    </p>
+    <h4>location객체에 대해 알아보자</h4>
+    <p>
+        브라우저창에서 url부분을 객체로 만든것으로 보면됨.
+        페이지를 전환시킬 수 있는 객체임
+    </p>
+    <button onclick="locationInfo();">location</button>
+    <button onclick="assignTest()">페이지이동 - assign</button>
+    <!-- <button onclick="replaceTest()">페이지이동 - location</button> -->
+    <button onclick='location.replace("http://www.google.com");'>페이지이동 - replace</button>
+    <button onclick="relaoadTest()">새로고침 - reload</button>
+    <button onclick="location.href='http://www.naver.com'">네이버이동</button>
+
+    <script>
+        function relaoadTest() {
+            location.reload();
+        }
+        function replaceTest() {
+            location.replace("http://www.google.com");//히스토리가 지워짐 뒤로가기 없음
+        }
+        function assignTest() {
+            location.assign("http://www.iei.or.kr");//히스토리가 남음 뒤로가기가 됨
+        }
+        function locationInfo() {
+            for (let key in location) {
+                console.log(`key : ${key} - value : ${location[key]}`);
+            }
+        }
+    </script>
+
+
+    <h3>navigator알아보기</h3>
+    <p>client브라우저의 정보를 가지고 있는 객체</p>
+    <button onclick="navigatorInfo()">navigator</button>
+    <div id="area"></div>
+    <script>
+        function navigatorInfo() {
+            for (let v in navigator) {
+                console.log(`ket : ${v} - value : ${navigator[v]}`);
+            }
+            let area = document.getElementById("area");
+            navigator.geolocation.getCurrentPosition(function (position) {
+                console.log(position);
+                area.innerHTML += "위도 : " + position.coords.latitude + "경도 : " + position.coords.longitude;
+            })
+        }
+    </script>
+
+
+    <h3>screen객체 알아보기</h3>
+    <p>사용자 화면에 대한 정보를 가지고 있는 객체</p>
+    <button onclick="screenInfo();">스크린정보</button>
+    <script>
+        function screenInfo() {
+            for (let v in screen) {
+                console.log(`key : ${v} - value : ${screen[v]}`);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

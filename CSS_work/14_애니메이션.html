@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니메이션</title>
+    <style>
+        @keyframes ani {
+            from {
+                background-color: salmon;
+                font-size: 30px;
+                transform: rotate(180deg);
+            }
+            to {
+                background-color: springgreen;
+                border: 5px goldenrod solid;
+                border-radius: 50px;
+                font-size: 15px;
+                transform: rotate(360deg);
+            }
+        }
+        .testani:hover {
+            width: 400px;
+            height: 200px;
+            animation-name: ani;
+            animation-duration: 2s;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        애니메이션적용하기!!
+    </h1>
+    <div class="testani">
+        애니메이션 시작
+    </div>
+    <header>
+        <ul>
+            <li><a href="">main</a></li>
+            <li><a href="">board</a></li>
+            <li><a href="">gallary</a></li>
+            <li><a href="">etc</a></li>
+        </ul>
+    </header>
+    <style>
+        li>a{
+            text-decoration:none;
+            font-size:30px;
+            font-weight:bolder;
+            color:lightgreen;
+        }
+        header li{
+            display: inline-block;
+            margin-left: 50px;
+            cursor:pointer;
+        }
+        header li:hover{
+            animation:menumove 0.5s infinite alternate;
+        }
+        header li>a:hover{
+            animation:menumove 0.5s infinite alternate;
+        }
+        @keyframes menumove{
+            0%{
+                transform:translateX(3px);
+                color:brown;
+                text-decoration:overline;
+                font-size:40px;
+            }30%{
+                transform:translateX(-3px);
+                color:rgb(76, 32, 178);
+                text-decoration:overline;
+                font-size:40px;
+            }60%{
+                transform:translateY(3px);
+                color:brown;
+                text-decoration:overline;
+                font-size:40px;
+            }100%{
+                transform:translateY(-3px);
+                color:rgb(76, 32, 178);
+                text-decoration:overline;
+                font-size:40px;
+            }
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>effect</title>
+    <script src="js/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <h3>effect함수이용하기</h3>
+    <p>
+        css에서 animation,transition으로 부여했던 효과를 함수로 미리만들어서
+        편하게 사용할 수 있게 한것
+    </p>
+    <h3>show /hide</h3>
+    <p>
+        선택된 요소를 보여주고, 사라지게하는 함수
+    </p>
+
+    <button id="showTest">보여주기</button>
+    <button id="hideTest">사라져랏!</button>
+    <button id="toggleTest">한번에 구현하기</button>
+    <img src="sea.jpg" alt="" width="200" height="200" id="tt">
+    <script>
+        $(function(){
+            $("#toggleTest").toggle(e =>{
+                $("#tt").toggle(2000);
+            });
+            $("#showTest").click(e =>{
+                $("#tt").show(3000); //보여주기 -> display block 지연시간부여하기(ms)
+            });
+            $("#hideTest").click(e =>{
+                $("#tt").hide(3000); //사라지기 -> display none
+            });
+        })
+    </script>
+    
+    <h3>슬라이딩이용하기</h3>
+    <div>첫번째 메뉴</div>
+    <p class="content">내용1</p>
+    <div>두번째 메뉴</div>
+    <p class="content">내용2</p>
+    <div>세번째 메뉴</div>
+    <p class="content">내용3</p>
+    <div>네번째 메뉴</div>
+    <p class="content">내용4</p>
+    <div>다섯번째 메뉴</div>
+    <p class="content">내용5</p>
+    
+    <style>
+        div{
+            width:300px;
+            height: 30px;
+            background-color: coral;
+            color:cyan;
+            text-align: center;
+            cursor:pointer; 
+        }
+        div+p{
+            display:none;
+            width:300px;
+            height:200px;
+            border: 1px solid steelblue;
+        }
+    </style>
+
+    <script>
+    let flag=true;
+    $(function(){
+        $("div").click(function(){
+            $(this).next().slideToggle(1000);
+            // if(flag){
+            //     $(this).next().slideDown(1000);
+            //     flag=false;
+            // }else{
+            //     $(this).next().slideUp();
+            //     flag=true;
+            // }
+        })
+    })
+    </script>
+    <h3>fade()함수이용하기</h3>
+    <p>
+        희미해지면서 사라지고, 서서히 선명해지는 함수
+        fadeIn() : 서서히 선명해지는
+        fadeOut() : 서서히 사라지는
+        fadeTo() : 원하는 시점까지 서서히 사라지는
+    </p>
+    <button id="in">fadein</button>
+    <button id="out">fadeout</button>
+    <button id="to">toggle</button>
+    <button id="fadeto">fadeto</button>
+    <img src="sea.jpg" alt="" width="200" height="200" id="target">
+    <script>
+        $(function(){
+            $("#target").mouseenter(function(){
+                $(this).fadeTo(1000,0.3);
+            })
+            $("#target").mouseenter(function(){
+                $(this).fadeTo(1000,1);
+            })
+            $("#to").click(function(){
+                $("#target").fadeToggle(1000);
+            })
+            $("#in").click(function(){
+                $("#target").fadeIn(1000);
+            })
+            $("#out").click(function(){
+                 $("#target").fadeOut(1000);
+            })
+        })
+    </script>  
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>윈도우 객체 알아보기</title>
+</head>
+
+<body>
+    <h1>윈도우객체</h1>
+    <script>
+        console.log(window);
+    </script>
+
+    <h3>윈도우 새창 만들기</h3>
+    <p>open()함수를 이용해서 윈도우 새창을 만들었음</p>
+
+    <button onclick="newWin();">새창아만들어져랏!</button>
+    <button onclick="newWin2();">부모창에서 자식창조작하기</button>
+    <div id="container"></div>
+
+    <script>
+        function newWin() {
+            //매개변수는 3개를 전달함.
+            //1. 주소 윈도창이 열렸을때 열리는 페이지 주소
+            //2. 이름||새창여는 방법 : _blank(새창,새탭):default, _self(현재창)
+            //3. 윈도창에 대한 설정 : 크기, 창옵션
+            window.open("09_객체.html", "_blank", "width=400, height=300");
+        }
+        function newWin2() {
+            let child = open("", "", "width=400,height=300");
+            console.log(child);
+            let script = "<script>";
+            script += "function sendData(){";
+            script += "let con=opener.document.getElementById('container');";
+            script += "let value=document.getElementById('data').value;";
+            script += "con.innerHTML+='<h3>'+value+'</h3>';}";
+            script += "</";
+            script += "script>";
+            child.document.write("<html><body><h2>부모창에서 보낸페이지</h2>"
+                + "<input type='text' id='data'>" +
+                "<button onclick='sendData();'>데이터전송</button>" + script + "</body></html>");
+
+            //child.document.write("<h1>부모창에서 작성한 내용</h1>");
+        }
+    </script>
+
+    <script>
+        function sendData() {
+            let con = opener.document.getElementById("container");
+            let value = document.getElementById("data").value;
+            con.innerHTML += '<h3>' + value + '</h3>';
+        }
+    </script>
+
+    <h3>setTimeOut(), setInterval()함수 이용하기</h3>
+    <p>
+        setTimeout(특정함수,시간(1/1000s)) : 일정시간 후 특정함수를 한번 실행하는것
+        setInterval(특정함수,시간(1/1000s)) : 일정시간 간격으로 특정함수를 계속 실행하는 것
+    </p>
+    <button onclick="setTimeoutTest();">setTimeoutTest</button>
+    <button onclick="setIntervalTest();">setIntervalTest</button>
+    <p>
+        setInterval, setTimeout함수를 삭제하는 방법!
+        clearInterval(interval명), clearTimeout(timeout명) 함수를 이용
+    </p>
+    <h3 id="count">10</h3>
+    <button onclick="newWindow();">새창만들기</button>
+    <button onclick="moveWin();">창 움직이기</button>
+    <button onclick="sizeWin();">창 크기변경</button>
+    <button onclick="closeWin();">창닫기</button>
+    <script>
+        let ch;
+        function closeWin() {
+            ch = open("", "", "width=100,height=100");
+            setInterval(() => {
+                let width = Math.floor(Math.random() * 800);
+                let height = Math.floor(Math.random() * 800);
+                let x = Math.floor(Math.random() * 200);
+                let y = Math.floor(Math.random() * 200);
+                ch.resizeTo(width, height);
+                ch.moveTo(x, y);
+            }, 300)
+        }
+        function sizeWin() {
+            ch.resizeTo(400, 400);
+        }
+        function newWindow() {
+            ch = open("", "", "width=200,height=200");
+        }
+        function moveWin() {
+            console.log(ch.screenX);
+            console.log(ch.screenY);
+            ch.moveTo(ch.screenX - 100, ch.screenY + 100);
+            console.log(ch.screenX);
+            console.log(ch.screenY);
+        }
+        function setIntervalTest() {
+            let su = document.getElementById("count");
+            let that = setInterval(function () {
+                let count = su.innerHTML;
+                count == 0 ? clearInterval(that) : su.innerHTML = count - 1;
+            }, 1000)
+        }
+        function setTimeoutTest() {
+            let child = open("", "", "width=200,height=400");
+            child.document.write("<h1 stylc='color:red';>3초후에 창이 닫힙니다.</h1>");
+            //일정시간 후 자식창 닫기
+            // 윈도우창을 닫아주는 함수 -> close();
+            let that = setTimeout(function () {
+                child.close();
+            }, 3000);
+            clearTimeout(that);
+        }
+    </script>
+
+    <h3>onload속성이용</h3>
+    <p>
+        페이지는 위에서부터 읽으면서 처리하는 인터프린트 방식으로 순서에 영향을 받음
+        자바스크립트도 자바스크립트 구문이 해석하기 전에 읽어올 태그가 없으면 읽지 못함.
+    </p>
+    <script>
+        window.onload = function () {
+            var area = document.getElementById("test1");
+            area.innerHTML = "호호호호 하하하하";
+        }
+        window.onload = function () {
+            alert("ddd");
+        }
+    </script>
+
+    <div id="test1"></div>
+
+
+
+
+</body>
+
+</html>

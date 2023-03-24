@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            background-color: rgb(247, 247, 247);
+            padding: 10px;
+            border-radius: 20px;
+        }
+        ol {
+            list-style: none;
+        }
+        ol>li {
+            background-color: greenyellow;
+            height: 40px;
+            padding: 10px;
+            border: 1px white solid;
+            border-radius: 10px;
+        }
+        fieldset>ol>li>input{
+            float: right;
+        }
+        input[type=submit]{
+            width:80px;
+            height:40px;
+            background-color:rgb(0, 200, 0);
+            color: white;
+            border-radius: 30px;
+            border-style: none;
+        }
+        header{
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div></div>
+    <div><h1>CSS3</h1></div>
+    <div></div>
+    </header>
+    <form action="">
+    <fieldset>
+    <legend>Step 1: 로그인 정보</legend>
+        <ol>
+            <li>아이디 <input type="id" name="id"></li>
+            <li>비밀번호<input type="password" name="password"></li>
+            <li>비밀번호 확인<input type="password" name="pch"></li>
+            <li>회원등급<input type="text" name="grade" placeholder="준회원"></li>
+        </ol>
+    
+    </fieldset>
+    <fieldset>
+        <legend>Step 2: 개인정보</legend>
+        <ol>
+            <li>이름<input type="text" name="name1" placeholder="5자미만 공백없이"></li>
+            <li>메일 주소<input type="text" name="email" placeholder="abcd@domain.com"    opacity: 0></li>
+            <li>연락처<input type="text" name="phone"></li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend>Step 3: 코딩 숙련도(상, 중, 하)</legend>
+        <ol>
+            <li><input type="range"></li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <input type="submit" value="제출">
+    </fieldset>
+</form>
+</body>
+</html>

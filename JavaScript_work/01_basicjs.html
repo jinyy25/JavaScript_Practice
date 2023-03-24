@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 적용하기</title>
+    <!-- 외부스크립트 파일을 불러올때는 head태그안에서 많이 선언함 -->
+    <script src="js/test.js"></script>
+</head>
+
+<body>
+    <h1>자바스크립트 사용해보기</h1>
+    <p>
+        자바스크립트 적용하는 방법<br>
+        1. inline방식 : 태그의 속성(이벤트속성)에 스크립트문을 작성하는 것<br>
+        2. internal방식 script태그 안에 작성하는 방식 <br>
+        3. external방식 : 외부의 js파일을 불러와서 사용하는 방식
+    </p>
+    <h3>inline방식적용</h3>
+    <p onclick="alert('하하하');">이거클릭해봐!</p>
+
+    <h3>internal방식적용</h3>
+    <!-- 위치 상관x -->
+    <script>
+        alert('internal방식');
+    </script>
+
+    <h3>external방식적용</h3>
+
+    <h3>자바스크립트를 지원하지않는 브라우저경고문 띄우기</h3>
+    <noscript>
+        <p style="color:red,size 30px;">이 브라우저는 스크립트를 제공하지 않아 제대로 작동하지 않습니다.</p>
+    </noscript>
+</body>
+
+</html>
